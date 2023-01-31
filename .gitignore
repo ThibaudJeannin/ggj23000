@@ -1,0 +1,13 @@
+.DS_Store
+.idea/shelf
+workspace.xml
+*.versionsBackup
+/.idea/
+.gradle/
+build/
+!**/src/**/build
+!**/test/**/build
+*.iml
+!**/testData/**/*.iml
+node_modules/
+system.properties
