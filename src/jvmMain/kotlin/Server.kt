@@ -1,11 +1,14 @@
 import ggj.User
-import ggj23.UserSession
-import ggj23.dao.UserDao
-import ggj23.dao.Users
+import ggj.UserMe
+import ggj.UserSession
+import ggj.dao.UserDao
+import ggj.dao.Users
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
 import io.ktor.server.http.content.*
+import io.ktor.server.netty.*
 import io.ktor.server.plugins.compression.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.cors.routing.*
@@ -20,8 +23,7 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 
-
-fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
+fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun Application.module() {
     setupDatabase()
@@ -53,6 +55,23 @@ fun Application.module() {
         cookie<UserSession>("user_session")
     }
 
+    install(Authentication) {
+        session<UserSession>("auth-session") {
+            validate {
+                println("check session : $it")
+                transaction {
+                    val user = Users.select(Users.id eq it.userId)
+                        .singleOrNull()
+                    println("check session user : $user")
+                    if (user != null) it else null
+                }
+            }
+            challenge {
+                call.respondRedirect("/app/login")
+            }
+        }
+    }
+
     routing {
         static("/") {
             resource("/", "index.html")
@@ -62,18 +81,44 @@ fun Application.module() {
             resource("favicon.ico")
         }
 
+        authenticate("auth-session") {
+            route("/api") {
+                get("/users/me") {
+                    val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
+                    var user: UserMe? = null
+                    transaction {
+                        user = Users.select(Users.id eq userSession!!.userId)
+                            .map { resultRow ->
+                                UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
+                            }
+                            .singleOrNull()
+                    }
+                    if (user == null) {
+                        call.respond(HttpStatusCode.NotFound)
+                        return@get
+                    }
+                    call.respond(user!!)
+
+                }
+            }
+        }
+
         route("/sign-up") {
             post() {
                 val userName = call.receiveParameters()["username"]
                 if (userName != null && userName.isBlank()) {
-                    call.respond(HttpStatusCode.BadRequest, "bad username")
+                    call.respondRedirect("/app/login")
                     return@post
                 }
-                val newUser = User(userName = userName!!)
+                var newUser: UserMe? = null
                 transaction {
-                    UserDao.createFrom(newUser)
+                    val userInsertion = UserDao.new {
+                        this.name = userName!!
+                        this.tag = UserMe.randomTag()
+                    }
+                    newUser = UserMe(User(userInsertion.id.value, userInsertion.name), userInsertion.tag)
                 }
-                call.sessions.set("user_session", UserSession(newUser))
+                call.sessions.set("user_session", UserSession(newUser?.publicUser!!.userId))
                 call.application.environment.log.info("New user : $newUser")
                 call.respondRedirect("/app/home")
             }
@@ -86,16 +131,16 @@ fun Application.module() {
                     call.respond(HttpStatusCode.BadRequest, "bad usertag")
                     return@post
                 }
-                var user: User? = null
+                var user: UserMe? = null
                 transaction {
-                    user = Users.select(Users.id eq userTag)
+                    user = Users.select(Users.tag eq userTag!!)
                         .map { resultRow ->
-                            User(resultRow[Users.id].value, resultRow[Users.name])
+                            UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
                         }
                         .singleOrNull()
                 }
                 if (user != null) {
-                    call.sessions.set("user_session", UserSession(user!!))
+                    call.sessions.set("user_session", UserSession(user?.publicUser!!.userId))
                     call.application.environment.log.info("User $user signed in")
                     call.respondRedirect("/app/home")
                 } else {

@@ -1,18 +1,23 @@
 import kotlinx.html.FormMethod
 import kotlinx.html.InputType
 import kotlinx.html.hidden
+import react.Props
 import react.RBuilder
 import react.dom.attrs
 import react.dom.form
 import react.dom.input
+import react.fc
 import styled.styledInput
 
-val LoginForm: RBuilder.() -> Unit = {
+val LoginForm = fc<Props> {
+
+    console.log("Login form")
 
     form {
         attrs {
             action = "/sign-up"
             method = FormMethod.post
+            autoComplete = false
         }
         input {
             attrs {
@@ -21,7 +26,6 @@ val LoginForm: RBuilder.() -> Unit = {
                 name = "username"
                 required = true
             }
-
         }
         styledInput {
             attrs {
@@ -34,6 +38,7 @@ val LoginForm: RBuilder.() -> Unit = {
         attrs {
             action = "/sign-in"
             method = FormMethod.post
+            autoComplete = false
         }
         input {
             attrs {
