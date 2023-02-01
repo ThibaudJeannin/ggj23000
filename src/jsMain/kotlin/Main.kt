@@ -4,6 +4,6 @@ import react.create
 import react.dom.client.createRoot
 
 fun main() {
-    val container: Element = document.getElementById("root")!! as Element
+    val container: Element = document.getElementById("root")!!.unsafeCast<Element>()
     createRoot(container).render(app.create())
 }

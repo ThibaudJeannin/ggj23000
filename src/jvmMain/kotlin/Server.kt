@@ -58,11 +58,9 @@ fun Application.module() {
     install(Authentication) {
         session<UserSession>("auth-session") {
             validate {
-                println("check session : $it")
                 transaction {
                     val user = Users.select(Users.id eq it.userId)
                         .singleOrNull()
-                    println("check session user : $user")
                     if (user != null) it else null
                 }
             }
