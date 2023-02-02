@@ -103,7 +103,7 @@ fun Application.module() {
 
         route("/sign-up") {
             post() {
-                val userName = call.receiveParameters()["username"]
+                val userName = call.receiveParameters()["usrname"]
                 if (userName != null && userName.isBlank()) {
                     call.respondRedirect("/app/login")
                     return@post

@@ -2,56 +2,99 @@ import kotlinx.html.FormMethod
 import kotlinx.html.InputType
 import kotlinx.html.hidden
 import react.Props
-import react.RBuilder
-import react.dom.attrs
-import react.dom.form
-import react.dom.input
+import react.dom.*
 import react.fc
+import styled.css
+import styled.styledDiv
+import styled.styledHr
 import styled.styledInput
 
 val LoginForm = fc<Props> {
 
-    console.log("Login form")
+    styledDiv {
+        css {
+            classes.add("login-container")
+        }
 
-    form {
-        attrs {
-            action = "/sign-up"
-            method = FormMethod.post
-            autoComplete = false
-        }
-        input {
-            attrs {
-                type = InputType.text
-                placeholder = "Username"
-                name = "username"
-                required = true
+        styledDiv {
+            css {
+                classes.add("login-form")
             }
-        }
-        styledInput {
-            attrs {
-                type = InputType.submit
-                hidden = true
+
+            styledDiv {
+                css {
+                    classes.add("login-form-title")
+                }
+
+                + "LOGIN"
             }
-        }
-    }
-    form {
-        attrs {
-            action = "/sign-in"
-            method = FormMethod.post
-            autoComplete = false
-        }
-        input {
-            attrs {
-                type = InputType.text
-                placeholder = "#1234"
-                name = "usertag"
-                required = true
+
+            form {
+                attrs {
+                    action = "/sign-in"
+                    method = FormMethod.post
+                    autoComplete = false
+                }
+
+                styledInput {
+                    attrs {
+                        type = InputType.text
+                        placeholder = "####"
+                        name = "usertag"
+                        required = true
+                        maxLength="4"
+                    }
+                    css {
+                        classes.add("login-form-input")
+                        classes.add("login-form-input-id")
+                    }
+                }
+
+                styledInput {
+                    attrs {
+                        type = InputType.submit
+                        hidden = true
+                    }
+                }
             }
-        }
-        styledInput {
-            attrs {
-                type = InputType.submit
-                hidden = true
+
+            styledHr {
+                css {
+                    classes.add("login-form-separator")
+                }
+            }
+
+            styledDiv {
+                css {
+                    classes.add("login-form-title")
+                }
+
+                + "SIGNUP"
+            }
+
+            form {
+                attrs {
+                    action = "/sign-up"
+                    method = FormMethod.post
+                    autoComplete = false
+                }
+                styledInput {
+                    attrs {
+                        type = InputType.text
+                        placeholder = "Your name here"
+                        name = "usrname"
+                        required = true
+                    }
+                    css {
+                        classes.add("login-form-input")
+                    }
+                }
+                styledInput {
+                    attrs {
+                        type = InputType.submit
+                        hidden = true
+                    }
+                }
             }
         }
     }
