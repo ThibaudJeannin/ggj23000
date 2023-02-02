@@ -152,9 +152,18 @@ fun Application.module() {
 
 private fun setupDatabase() {
     Database.connect("jdbc:postgresql://localhost:5432/", "org.postgresql.Driver", "postgres", "password")
+    try {
+        transaction {
+            connection.autoCommit = true
+            SchemaUtils.dropDatabase("test_db")
+            connection.autoCommit = false
+        }
+    } catch (_: Exception) {
+        
+    }
+
     transaction {
         connection.autoCommit = true
-        SchemaUtils.dropDatabase("test_db")
         SchemaUtils.createDatabase("test_db")
         connection.autoCommit = false
     }
