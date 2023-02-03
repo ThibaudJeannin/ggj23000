@@ -3,7 +3,7 @@ package ggj
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class WoodResourceTest {
+internal class StoredResourceTest {
 
     @Test
     internal fun testWoodProduction() {
