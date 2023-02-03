@@ -77,6 +77,7 @@ fun Application.module() {
             resource("ggj23000.js")
             resource("/app/*", "index.html")
             resource("favicon.ico")
+            resource("mainView.js")
         }
 
         authenticate("auth-session") {

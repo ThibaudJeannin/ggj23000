@@ -11,14 +11,7 @@ body, html {
     font-size: 14px;
     padding: 0;
     margin: 0;
-}
-
-input {
-    font-size: 1rem;
-    border: 1px solid black;
-    padding-inline: 1rem;
-    text-align: center;
-    position: relative;
+    height: 100vh;
 }
 
 .login-container {
@@ -47,6 +40,10 @@ input {
 .login-form-input {
     font-size: 8rem;
     width: calc(100% - 4rem);
+    border: 1px solid black;
+    padding-inline: 1rem;
+    text-align: center;
+    position: relative;
 }
 
 .login-form-input-id {
@@ -55,4 +52,94 @@ input {
 
 .login-form-separator {
     margin-block: 3.5rem 2rem;
+}
+
+
+
+
+#container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 4rem 4rem 1fr 4rem;
+  background-color: red;
+}
+
+#resources {
+  background-color: #606;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#bars {
+  background-color: #060;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#gameview {
+  background-color: #006;
+}
+
+#items {
+  background-color: #600;
+}
+
+#sidebar {
+  background-color: #660;
+  height: 100vh;
+  width: 25rem;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transform: translateX(-100%);
+  transition: .3s;
+}
+
+#sidebar.opened {
+  transform: translateX(0);
+}
+
+.resource {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    gap: .5rem;
+}
+
+.resource-img {
+    height: 2rem;
+    aspect-ratio: 1;
+    background-color: black;
+}
+
+.resource-text {
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bar-container {
+    width: 80%;
+}
+
+.bar-text {
+    font-size: 1rem;
+    color: white;
+}
+
+.bar-bar {
+    background-color: black;
+    height: 2px;
+    width: 100%;
 }
