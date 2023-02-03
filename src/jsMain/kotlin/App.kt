@@ -44,7 +44,7 @@ val app = fc<PropsWithChildren> {
                 attrs {
                     index = true
                     path = "/"
-                    element = createElement(LoginForm)
+                    element = MainView.create()
                 }
             }
             Route {
