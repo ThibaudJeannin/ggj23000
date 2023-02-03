@@ -181,6 +181,31 @@ val MainView = fc<Props> {
             id = "sidebar"
         }
 
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "perk1"
+
+            }
+        }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "perk2"
+            }
+        }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "perk3"
+            }
+        }
     }
 
     script {

@@ -96,10 +96,27 @@ body, html {
 
   transform: translateX(-100%);
   transition: .3s;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 #sidebar.opened {
   transform: translateX(0);
+}
+
+.perks {
+    margin: 5rem 2.5rem;
+    display: block-inline;
+    background-color: yellow;
+    height: 20rem;
+    width: 20rem;
 }
 
 .resource {
