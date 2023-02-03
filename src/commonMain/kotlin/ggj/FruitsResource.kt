@@ -1,10 +1,10 @@
 package ggj
 
 
-class FruitsResource(name: String, quantity: Float = 0.0f, capacity: Float): StoredResource(name, quantity, capacity) {
+class FruitsResource : StoredResource(5.0f, 10.0f) {
 
-    override fun produce(bio: Float) {
-        this.quantity = minOf(this.capacity, this.quantity + bio);
+    override fun produce(indicators: Indicators, naturalResources: NaturalResources) {
+        this.quantity = minOf(this.capacity, this.quantity + (naturalResources.trees * indicators.bio));
     }
 
 }

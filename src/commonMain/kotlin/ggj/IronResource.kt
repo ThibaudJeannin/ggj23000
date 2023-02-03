@@ -1,10 +1,9 @@
 package ggj
 
 
-class IronResource(name: String, quantity: Float = 0.0f, capacity: Float): StoredResource(name, quantity, capacity) {
+class IronResource : StoredResource(50.0f, 75.0f) {
 
-    override fun produce(bio: Float) {
-        this.quantity = minOf(this.capacity, this.quantity + bio);
+    override fun produce(indicators: Indicators, naturalResources: NaturalResources) {
+        this.quantity = minOf(this.capacity, this.quantity + 5);
     }
-
 }
