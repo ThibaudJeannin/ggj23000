@@ -167,6 +167,36 @@ val MainView = fc<Props> {
             attrs {
                 id = "gameview"
             }
+
+            div {
+                attrs {
+                    id = "actions-container"
+                }
+
+                div {
+                    attrs {
+                        id = "actions"
+                    }
+
+                    styledDiv {
+                        css {
+                            classes.add("action")
+                        }
+                    }
+
+                    styledDiv {
+                        css {
+                            classes.add("action")
+                        }
+                    }
+
+                    styledDiv {
+                        css {
+                            classes.add("action")
+                        }
+                    }
+                }
+            }
         }
 
         div {
@@ -209,7 +239,7 @@ val MainView = fc<Props> {
     }
 
     script {
-        var js = document.createElement("script")
+        val js = document.createElement("script")
         js.setAttribute("src", "mainView.js")
         document.body.appendChild(js)
     }
