@@ -187,6 +187,7 @@ body, html {
 #iron > .resource-img {
     scale: 2.5;
     background-image: url("assets/ore_silver.png");
+    transform: rotate(110deg);
 }
 
 #iron > .resource-text {
