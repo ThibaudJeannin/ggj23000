@@ -33,6 +33,22 @@ import java.util.concurrent.TimeUnit
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
+fun getParcelFromSession(userSession:UserSession?): Parcel? {
+    var parcel: Parcel? = null
+    transaction {
+        parcel = Parcels // todo use dao
+            .select(
+                Parcels.user eq userSession!!.userId
+            )
+            .map { resultRow ->
+                Parcels.mapToObject(resultRow)
+                //UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
+            }
+            .singleOrNull()
+
+    }
+    return parcel
+}
 fun Application.module() {
     val env = System.getenv()
     val dbHost: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
@@ -124,25 +140,17 @@ fun Application.module() {
 
                 get("/parcels/mine") {
                     val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
-                    var parcel: Parcel? = null
-                    transaction {
-                     parcel = Parcels // todo use dao
-                        .select(
-                            Parcels.user eq userSession!!.userId
-                        )
-                        .map { resultRow ->
-                            Parcels.mapToObject(resultRow)
-                            //UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
-                        }
-                        .singleOrNull()
-
-                    }
+                    val parcel = getParcelFromSession(userSession)
 
                     call.respond(parcel!!)
                 }
-                //get("/parcels/mine/harvest/wood"){
-                //    call.respond(parcel.harvestWood())
-                //}
+
+                get("/parcels/mine/harvest/wood"){
+                    val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
+                    val parcel = getParcelFromSession(userSession)
+                    call.respond(parcel?.harvestWood()!!)
+                }
+
                 //get("/parcels/mine/harvest/fruits"){
                 //    call.respond(parcel.harvestFruits())
                 //}
