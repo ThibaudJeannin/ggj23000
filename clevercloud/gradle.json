@@ -3,6 +3,6 @@
     "goal": "./gradlew build"
   },
   "deploy": {
-    "goal": "java -jar build/libs/*-all.jar"
+    "goal": "ls build/libs && java -jar build/libs/*-all.jar"
   }
 }
