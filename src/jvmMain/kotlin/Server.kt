@@ -2,6 +2,8 @@ import ggj.Parcel
 import ggj.User
 import ggj.UserMe
 import ggj.UserSession
+import ggj.dao.ParcelDao
+import ggj.dao.Parcels
 import ggj.dao.UserDao
 import ggj.dao.Users
 import ggj.task.UpdateWorldJob
@@ -20,8 +22,10 @@ import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
 import kotlinx.serialization.json.Json
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.EqOp
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.concurrent.Executors
@@ -45,6 +49,7 @@ fun Application.module() {
 
     transaction {
         SchemaUtils.create(Users)
+        SchemaUtils.create(Parcels)
     }
 
     install(ContentNegotiation) {
@@ -116,22 +121,36 @@ fun Application.module() {
 
                 }
 
-                val parcel = Parcel() // todo use dao
+
                 get("/parcels/mine") {
-                    call.respond(parcel)
+                    val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
+                    var parcel: Parcel? = null
+                    transaction {
+                     parcel = Parcels // todo use dao
+                        .select(
+                            Parcels.user eq userSession!!.userId
+                        )
+                        .map { resultRow ->
+                            Parcels.mapToObject(resultRow)
+                            //UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
+                        }
+                        .singleOrNull()
+
+                    }
+
+                    call.respond(parcel!!)
                 }
-                get("/parcels/mine/harvest/wood"){
-                    call.respond(parcel.harvestWood())
-                }
-                get("/parcels/mine/harvest/fruits"){
-                    call.respond(parcel.harvestFruits())
-                }
-                get("/parcels/mine/harvest/iron"){
-                    call.respond(parcel.harvestIron())
-                }
+                //get("/parcels/mine/harvest/wood"){
+                //    call.respond(parcel.harvestWood())
+                //}
+                //get("/parcels/mine/harvest/fruits"){
+                //    call.respond(parcel.harvestFruits())
+                //}
+                //get("/parcels/mine/harvest/iron"){
+                //    call.respond(parcel.harvestIron())
+                ///}
             }
         }
-
         route("/sign-up") {
             post() {
                 val userName = call.receiveParameters()["usrname"]
@@ -146,6 +165,31 @@ fun Application.module() {
                         this.tag = UserMe.randomTag()
                     }
                     newUser = UserMe(User(userInsertion.id.value, userInsertion.name), userInsertion.tag)
+                    var parcel = Parcel();
+
+                    ParcelDao.new {
+                        this.user = userInsertion.id.value
+                        this.rsWoodQuantity = parcel.resourceStorage.wood.quantity
+                        this.rsWoodCapacity = parcel.resourceStorage.wood.capacity
+                        this.rsFruitsQuantity = parcel.resourceStorage.fruits.quantity
+                        this.rsFruitsCapacity = parcel.resourceStorage.fruits.capacity
+                        this.rsIronQuantity = parcel.resourceStorage.iron.quantity
+                        this.rsIronCapacity = parcel.resourceStorage.iron.capacity
+
+                        this.iBioVal = parcel.indicators.bio.value
+                        this.iBioEvo = parcel.indicators.bio.evolution
+
+                        this.iAirVal = parcel.indicators.air.value
+                        this.iAirEvo = parcel.indicators.air.evolution
+
+                        this.iSoilVal = parcel.indicators.soil.value
+                        this.iSoilEvo = parcel.indicators.soil.evolution
+
+                        this.nrIron = parcel.naturalResources.iron
+                        this.nrFruits = parcel.naturalResources.fruits
+                        this.nrTrees = parcel.naturalResources.trees
+
+                    }
                 }
                 call.sessions.set("user_session", UserSession(newUser?.publicUser!!.userId))
                 call.application.environment.log.info("New user : $newUser")
