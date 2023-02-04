@@ -178,19 +178,28 @@ body, html {
     background-size: contain;
 }
 
-#apple {
+#fruits > .resource-img {
     scale: 2;
     background-image: url("assets/apple.png");
 }
 
-#iron {
+#fruits > .resource-text {
+}
+
+#iron > .resource-img {
     scale: 2.5;
     background-image: url("assets/ore_silver.png");
 }
 
-#wood {
+#iron > .resource-text {
+}
+
+#wood > .resource-img  {
     scale: 1.3;
     background-image: url("assets/trunk_bottom.png");
+}
+
+#wood > .resource-text  {
 }
 
 .resource-text {

@@ -42,7 +42,19 @@ fetchMe = () => {
 }
 
 updateParcelle = (parcelle) => {
-  console.log(parcelle)
+    console.log(parcelle)
+    displayResourcesNb(parcelle)
+}
+
+displayResourcesNb = (parcelle) => {
+    document.querySelector("#wood > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.wood?.quantity)
+    document.querySelector("#fruits > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.fruits?.quantity)
+    document.querySelector("#iron > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.iron?.quantity)
+}
+
+
+formatResourceNb = (nb) => {
+    return nb != null && nb ? new Intl.NumberFormat("fr-FR", {maximumFractionDigits: 0}).format(nb) : 0
 
 }
 
