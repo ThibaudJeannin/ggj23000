@@ -5,6 +5,7 @@ import react.dom.*
 import react.fc
 import styled.css
 import styled.styledDiv
+import styled.styledSpan
 
 val MainView = fc<Props> {
 
@@ -203,6 +204,17 @@ val MainView = fc<Props> {
             attrs {
                 id = "items"
             }
+        }
+    }
+
+
+    styledDiv {
+        css {
+            classes.add("strip")
+        }
+        attrs {
+            id = "strip_1"
+
         }
     }
 

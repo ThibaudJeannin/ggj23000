@@ -198,3 +198,20 @@ body, html {
 .action:hover {
     cursor: pointer;
 }
+
+.strip {
+    width: 0;
+    height: 0;
+    border-top: 4rem solid transparent;
+    border-bottom: 4rem solid transparent;
+    border-left: 4rem solid green;
+    position: absolute;
+    top: 50vh;
+    left: 0;
+    transition: .3s;
+}
+
+
+.strip.opened {
+  transform: translateX(25rem)
+}
