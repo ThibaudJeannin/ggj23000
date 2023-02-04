@@ -1,33 +1,3 @@
-document.getElementById('strip_1').addEventListener('click', () => {
-  document.getElementById('sidebar').classList.toggle('opened')
-  document.getElementById('strip_1').classList.toggle('opened')
-})
-
-document.getElementById('perk_1').addEventListener('click', () => {
-  document.getElementById('subsidebar_1').classList.toggle('opened')
-  document.getElementById('subsidebar_2').classList.remove('opened')
-  document.getElementById('subsidebar_3').classList.remove('opened')
-  document.getElementById('subsidebar_4').classList.remove('opened')
-})
-document.getElementById('perk_2').addEventListener('click', () => {
-  document.getElementById('subsidebar_2').classList.toggle('opened')
-  document.getElementById('subsidebar_1').classList.remove('opened')
-  document.getElementById('subsidebar_3').classList.remove('opened')
-  document.getElementById('subsidebar_4').classList.remove('opened')
-})
-document.getElementById('perk_3').addEventListener('click', () => {
-  document.getElementById('subsidebar_3').classList.toggle('opened')
-  document.getElementById('subsidebar_1').classList.remove('opened')
-  document.getElementById('subsidebar_2').classList.remove('opened')
-  document.getElementById('subsidebar_4').classList.remove('opened')
-})
-document.getElementById('perk_4').addEventListener('click', () => {
-  document.getElementById('subsidebar_4').classList.toggle('opened')
-  document.getElementById('subsidebar_1').classList.remove('opened')
-  document.getElementById('subsidebar_2').classList.remove('opened')
-  document.getElementById('subsidebar_3').classList.remove('opened')
-})
-
 document.getElementById('axe').addEventListener('click', () => {
   fetch('/api/parcels/mine/harvest/wood')
     .then(r => r.json())

@@ -3,6 +3,7 @@ import kotlinx.html.id
 import react.Props
 import react.dom.attrs
 import react.dom.div
+import react.dom.onClick
 import react.dom.script
 import react.fc
 import styled.css
@@ -294,7 +295,11 @@ val MainView = fc<Props> {
         }
         attrs {
             id = "strip_1"
-
+            onClick = {
+                console.log(document.getElementById("sidebar"))
+                document.getElementById("sidebar")?.classList?.toggle("opened")
+                document.getElementById("strip_1")?.classList?.toggle("opened")
+            }
         }
     }
 
@@ -309,7 +314,12 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "perk_1"
-
+                onClick = {
+                    document.getElementById("subsidebar_1")?.classList?.toggle("opened")
+                    document.getElementById("subsidebar_2")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_3")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_4")?.classList?.remove("opened")
+                }
             }
         }
 
@@ -319,6 +329,12 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "perk_2"
+                onClick = {
+                    document.getElementById("subsidebar_2")?.classList?.toggle("opened")
+                    document.getElementById("subsidebar_1")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_3")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_4")?.classList?.remove("opened")
+                }
             }
         }
         styledDiv {
@@ -327,6 +343,12 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "perk_3"
+                onClick = {
+                    document.getElementById("subsidebar_3")?.classList?.toggle("opened")
+                    document.getElementById("subsidebar_1")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_2")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_4")?.classList?.remove("opened")
+                }
             }
         }
         styledDiv {
@@ -335,6 +357,12 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "perk_4"
+                onClick = {
+                    document.getElementById("subsidebar_4")?.classList?.toggle("opened")
+                    document.getElementById("subsidebar_1")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_2")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_3")?.classList?.remove("opened")
+                }
             }
         }
         styledDiv {
@@ -369,7 +397,7 @@ val MainView = fc<Props> {
             attrs {
                 id = "cabane_1"
             }
-            + "Niveau 0"
+            +"Niveau 0"
         }
         styledDiv {
             css {
@@ -378,7 +406,7 @@ val MainView = fc<Props> {
             attrs {
                 id = "timber_1"
             }
-            + "Niveau 0"
+            +"Niveau 0"
         }
         styledDiv {
             css {
@@ -387,7 +415,7 @@ val MainView = fc<Props> {
             attrs {
                 id = "forest_1"
             }
-            + "Niveau 0"
+            +"Niveau 0"
         }
         styledDiv {
             css {
@@ -396,7 +424,7 @@ val MainView = fc<Props> {
             attrs {
                 id = "fred_1"
             }
-            + "Niveau 0"
+            +"Niveau 0"
         }
     }
     styledDiv {
@@ -413,7 +441,7 @@ val MainView = fc<Props> {
             attrs {
                 id = "hangar_1"
             }
-            + "Niveau 0"
+            +"Niveau 0"
         }
     }
     styledDiv {
@@ -430,7 +458,7 @@ val MainView = fc<Props> {
             attrs {
                 id = "mine_1"
             }
-            + "Niveau 0"
+            +"Niveau 0"
         }
 
         styledDiv {
@@ -440,7 +468,7 @@ val MainView = fc<Props> {
             attrs {
                 id = "warehouse_1"
             }
-            + "Niveau 0"
+            +"Niveau 0"
         }
     }
 
@@ -450,3 +478,4 @@ val MainView = fc<Props> {
         document.body.appendChild(js)
     }
 }
+
