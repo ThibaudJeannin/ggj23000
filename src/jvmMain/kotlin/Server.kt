@@ -30,7 +30,7 @@ fun Application.module() {
     val host: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
     val port: String = env.getOrDefault("POSTGRESQL_ADDON_PORT", "5432")
     val base: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "test_db")
-    val url = "jdbc:postgresql://$host:$port"
+    val url = "jdbc:postgresql://$host:$port/"
     val user: String = env.getOrDefault("POSTGRESQL_ADDON_USER", "postgres")
     val password: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
 
@@ -38,7 +38,7 @@ fun Application.module() {
 
     setupDatabase(url, base, user, password)
 
-    Database.connect("$url/$base", "org.postgresql.Driver", user, password)
+    Database.connect("$url$base", "org.postgresql.Driver", user, password)
     transaction {
         SchemaUtils.create(Users)
     }
