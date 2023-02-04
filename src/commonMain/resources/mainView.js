@@ -3,6 +3,15 @@ document.getElementById('strip_1').addEventListener('click', () => {
   document.getElementById('strip_1').classList.toggle('opened')
 })
 
+document.getElementById('axe').addEventListener('click', () => {
+
+})
+document.getElementById('hoe').addEventListener('click', () => {
+
+})
+document.getElementById('pickaxe').addEventListener('click', () => {
+
+})
 
 fetchParcelle = () => {
   fetch('api/parcels/mine')

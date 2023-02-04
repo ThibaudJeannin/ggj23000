@@ -299,7 +299,7 @@ val MainView = fc<Props> {
 
     script {
         val js = document.createElement("script")
-        js.setAttribute("src", "mainView.js")
+        js.setAttribute("src", "/mainView.js")
         document.body.appendChild(js)
     }
 }
