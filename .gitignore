@@ -11,3 +11,4 @@ build/
 !**/testData/**/*.iml
 node_modules/
 system.properties
+/out
