@@ -13,4 +13,5 @@ class ResourceStorage {
         fruits.addToStorage(production.fruits)
         iron.addToStorage(production.iron)
     }
+
 }

@@ -11,9 +11,11 @@ class Parcel() {
     val indicators = Indicators()
     val naturalResources = NaturalResources()
     val items = mutableListOf<Item>()
+    val upgrades = Upgrades(resourceStorage)
 
     private var harvestWoodValue = 10.0f
     private var harvestFruitValue = 2.0f
+    private var harvestIronValue = 1.0f
 
     private var harvestWoodRate = 1
     private var harvestFruitRate = 1
@@ -67,6 +69,7 @@ class Parcel() {
         if (abs(Random.nextInt()) % 100 < (seedLootRate * 2)) {
             this.items.add(Seed())
         }
+
     }
 
     fun harvestIron() {
@@ -87,10 +90,9 @@ class Parcel() {
 
         if (abs(Random.nextInt()) % 100 < (constants.iron.HARVEST_PROBA)) {
 
-            val rng = (constants.iron.MIN_HARVEST_AMOUNT..constants.iron.MAX_HARVEST_AMOUNT).random().toFloat()
-
-            resourceStorage.iron.addToStorage(rng)
+            resourceStorage.iron.addToStorage(harvestIronValue)
 
         }
     }
+
 }

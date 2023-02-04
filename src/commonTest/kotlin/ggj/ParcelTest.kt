@@ -126,7 +126,7 @@ class ParcelTest {
             parcel.harvestIron()
         }
 
-        val assertVal = (constants.iron.HARVEST_PROBA / 100f) * ((constants.iron.MAX_HARVEST_AMOUNT - constants.iron.MIN_HARVEST_AMOUNT) / 2);
+        val assertVal = (constants.iron.HARVEST_PROBA / 100f);
 
         assertEquals(assertVal.toDouble(), parcel.resourceStorage.iron.quantity / iteration.toDouble(), TOLERANCE_IRON)
 
