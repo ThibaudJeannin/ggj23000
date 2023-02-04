@@ -100,7 +100,7 @@ fun Application.module() {
                 }
             }
             challenge {
-                call.respondRedirect("/app/login")
+                call.respond(HttpStatusCode.Forbidden)
             }
         }
     }
@@ -130,11 +130,10 @@ fun Application.module() {
                             .singleOrNull()
                     }
                     if (user == null) {
-                        call.respond(HttpStatusCode.NotFound)
+                        call.respond(HttpStatusCode.Forbidden)
                         return@get
                     }
                     call.respond(user!!)
-
                 }
 
 
