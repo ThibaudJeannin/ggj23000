@@ -26,22 +26,31 @@ document.getElementById('pickaxe').addEventListener('click', () => {
 })
 
 fetchParcelle = () => {
-  fetch('/api/parcels/mine')
+  fetch('/api/parcels/mine', {redirect: 'error'})
     .then(r => r.json())
+    .catch(e => {
+      window.location.href = '/app/login'
+    })
     .then(data => {
       updateParcelle(data)
     })
 }
 
 fetchMe = () => {
-  fetch('/api/users/me')
+  fetch('/api/users/me', {redirect: 'error'})
     .then(r => r.json())
+    .catch(e => {
+      window.location.href = '/app/login'
+    })
     .then(data => {
+      fetchParcelle()
+
       const name = data?.publicUser?.userName
       const tag = data?.userTag
       document.getElementById('user').innerText = `Bonjour ${name} (Utilise ${tag}) pour te reconnecter` // todo yohann fait mieux
     })
 }
+
 
 updateParcelle = (parcelle) => {
   console.log(parcelle)
@@ -51,26 +60,25 @@ updateParcelle = (parcelle) => {
 }
 
 displayResourcesNb = (parcelle) => {
-  document.querySelector("#wood > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.wood?.quantity)
-  document.querySelector("#fruits > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.fruits?.quantity)
-  document.querySelector("#iron > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.iron?.quantity)
+  document.querySelector('#wood > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.wood?.quantity)
+  document.querySelector('#fruits > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.fruits?.quantity)
+  document.querySelector('#iron > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.iron?.quantity)
 }
 
 
 formatResourceNb = (nb) => {
-  return nb != null && nb ? new Intl.NumberFormat("fr-FR", {maximumFractionDigits: 0}).format(nb) : 0
+  return nb != null && nb ? new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 0}).format(nb) : 0
 
 }
 
 fetchMe()
-fetchParcelle()
 
 setInterval(fetchParcelle, 5 * 60 * 1000)
 
 
 // GAME VIEW
 
-const view = document.getElementById("gameview")
+const view = document.getElementById('gameview')
 var trees = []
 var fruits = []
 var iron = []
@@ -79,11 +87,11 @@ updateDisplay = (parcelle) => {
 
   if (parcelle?.naturalResources?.trees) {
 
-    while (Math.floor(parcelle.naturalResources?.trees/100) < trees.length) {
-      removeTree(trees.length - (Math.floor(parcelle.naturalResources?.trees/100)))
+    while (Math.floor(parcelle.naturalResources?.trees / 100) < trees.length) {
+      removeTree(trees.length - (Math.floor(parcelle.naturalResources?.trees / 100)))
     }
-    if (Math.floor(parcelle.naturalResources?.trees/100) > trees.length) {
-      generateTrees((Math.floor(parcelle.naturalResources?.trees/100)) - trees.length)
+    if (Math.floor(parcelle.naturalResources?.trees / 100) > trees.length) {
+      generateTrees((Math.floor(parcelle.naturalResources?.trees / 100)) - trees.length)
     }
   }
 }
@@ -91,12 +99,12 @@ updateDisplay = (parcelle) => {
 generateTrees = (number) => {
 
   for (let i = 0; i < number; ++i) {
-    let tree = {};
-    tree.id = trees.length;
+    let tree = {}
+    tree.id = trees.length
     tree.obj = document.createElement('img')
     tree.obj.id = 'tree' + tree.id
     tree.obj.classList.add('tree')
-    tree.obj.src = `/assets/tree${Math.floor(Math.random()*8)}.png`
+    tree.obj.src = `/assets/tree${Math.floor(Math.random() * 8)}.png`
     // tree.style.backgroundImage = `url("/assets/tree${Math.floor(Math.random()*8)}.png")`
 
     tree.zIndex = Math.floor(Math.random() * 50)
