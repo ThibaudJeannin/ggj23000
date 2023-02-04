@@ -1,4 +1,4 @@
-package ggj
+package ggj.resources
 
 class IronUpgrade {
 }

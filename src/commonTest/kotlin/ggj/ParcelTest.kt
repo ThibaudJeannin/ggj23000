@@ -1,5 +1,6 @@
 package ggj
 
+import ggj.resources.InsufficientNaturalResourcesException
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith

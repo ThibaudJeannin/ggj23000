@@ -1,4 +1,4 @@
-package ggj
+package ggj.resources
 
 import kotlinx.serialization.Serializable
 

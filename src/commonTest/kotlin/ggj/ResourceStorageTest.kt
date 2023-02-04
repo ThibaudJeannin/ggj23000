@@ -1,5 +1,7 @@
 package ggj
 
+import ggj.resources.Production
+import ggj.resources.ResourceStorage
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

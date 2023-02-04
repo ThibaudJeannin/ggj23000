@@ -1,14 +1,16 @@
 package ggj.dao
 
 import ggj.*
+import ggj.indicators.Indicators
+import ggj.items.Item
+import ggj.resources.NaturalResources
+import ggj.resources.ResourceStorage
+import ggj.resources.Upgrades
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.Query
 import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.Table
 
 val resourceStorage = ResourceStorage()
 val indicators = Indicators()

@@ -1,4 +1,4 @@
-package ggj
+package ggj.indicators
 
 import kotlinx.serialization.Serializable
 

@@ -1,6 +1,6 @@
 import ggj.Parcel
-import ggj.User
-import ggj.UserMe
+import ggj.users.User
+import ggj.users.UserMe
 import ggj.UserSession
 import ggj.dao.ParcelDao
 import ggj.dao.Parcels
@@ -22,10 +22,8 @@ import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
 import kotlinx.serialization.json.Json
 import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.EqOp
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.concurrent.Executors

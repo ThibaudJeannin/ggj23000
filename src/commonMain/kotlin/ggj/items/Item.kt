@@ -1,7 +1,7 @@
-package ggj
+package ggj.items
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Seed: Item() {
+abstract class Item {
 }

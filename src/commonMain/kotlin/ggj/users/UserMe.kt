@@ -1,4 +1,4 @@
-package ggj
+package ggj.users
 
 import kotlinx.serialization.Serializable
 import kotlin.random.Random
