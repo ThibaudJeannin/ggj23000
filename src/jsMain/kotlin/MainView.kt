@@ -242,7 +242,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("item-text")
                     }
-                    + "CONSUMABLES"
+                    + "CONSOMMABLES"
                 }
             }
             styledDiv {
@@ -286,7 +286,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("item-text")
                     }
-                    + "SHOPS"
+                    + "MAGASIN"
                 }
             }
         }
