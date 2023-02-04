@@ -1,7 +1,10 @@
 package ggj
 
+import kotlinx.serialization.Serializable
 import kotlin.math.abs
 import kotlin.random.Random
+
+@Serializable
 class Parcel() {
 
     val resourceStorage = ResourceStorage()
@@ -11,7 +14,6 @@ class Parcel() {
 
     private var harvestWoodValue = 10.0f
     private var harvestFruitValue = 2.0f
-    //private var harvestIronValue = 0.5f
 
     private var harvestWoodRate = 1
     private var harvestFruitRate = 1
@@ -85,7 +87,7 @@ class Parcel() {
 
         if (abs(Random.nextInt()) % 100 < (constants.iron.HARVEST_PROBA)) {
 
-            var rng = (constants.iron.MIN_HARVEST_AMOUNT..constants.iron.MAX_HARVEST_AMOUNT).random().toFloat()
+            val rng = (constants.iron.MIN_HARVEST_AMOUNT..constants.iron.MAX_HARVEST_AMOUNT).random().toFloat()
 
             resourceStorage.iron.addToStorage(rng)
 

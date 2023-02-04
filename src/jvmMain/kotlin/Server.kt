@@ -1,3 +1,4 @@
+import ggj.Parcel
 import ggj.User
 import ggj.UserMe
 import ggj.UserSession
@@ -111,6 +112,10 @@ fun Application.module() {
                     }
                     call.respond(user!!)
 
+                }
+
+                get("/parcels/mine") {
+                    call.respond(Parcel())
                 }
             }
         }

@@ -1,5 +1,8 @@
 package ggj
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class ResourceStorage {
     val wood = StoredResource(0.0f, 1000.0f)
     val fruits = StoredResource(0.0f, 1000.0f)
