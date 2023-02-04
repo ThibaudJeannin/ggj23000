@@ -34,12 +34,12 @@ fun Application.module() {
     val dbHost: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
     val dbPort: String = env.getOrDefault("POSTGRESQL_ADDON_PORT", "5432")
     val dbBase: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "ggj23_db")
-    val dbUrl = "jdbc:postgresql://$dbHost:$dbPort/"
+    val dbUrl = "jdbc:postgresql://$dbHost:$dbPort"
     val dbUser: String = env.getOrDefault("POSTGRESQL_ADDON_USER", "postgres")
     val dbPassword: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
 
 
-    print("$dbUrl, $dbPort, $dbBase, $dbUser, $dbPassword")
+    print("$dbUrl, $dbPort, $dbBase")
 //    setupDatabase(dbUrl, dbBase, dbUser, dbPassword)
     Database.connect("$dbUrl/$dbBase", "org.postgresql.Driver", dbUser, dbPassword)
 
@@ -86,9 +86,11 @@ fun Application.module() {
 
     routing {
         static("/") {
+            resources(".")
             resource("/", "index.html")
             resource("style.css")
             resource("ggj23000.js")
+            resource("/app", "index.html")
             resource("/app/*", "index.html")
             resource("favicon.ico")
             resource("mainView.js")
@@ -114,8 +116,18 @@ fun Application.module() {
 
                 }
 
+                val parcel = Parcel() // todo use dao
                 get("/parcels/mine") {
-                    call.respond(Parcel())
+                    call.respond(parcel)
+                }
+                get("/parcels/mine/harvest/wood"){
+                    call.respond(parcel.harvestWood())
+                }
+                get("/parcels/mine/harvest/fruits"){
+                    call.respond(parcel.harvestFruits())
+                }
+                get("/parcels/mine/harvest/iron"){
+                    call.respond(parcel.harvestIron())
                 }
             }
         }

@@ -4,15 +4,16 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.observer.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
-import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
 import kotlinx.serialization.json.Json
-import react.*
+import react.Props
+import react.PropsWithChildren
+import react.create
+import react.fc
 import react.router.Route
 import react.router.Routes
 import react.router.dom.BrowserRouter
-import kotlin.js.Date
 
 val scope = MainScope()
 
@@ -44,7 +45,7 @@ val app = fc<PropsWithChildren> {
                 attrs {
                     index = true
                     path = "/"
-                    element = MainView.create()
+                    element = LoginForm.create()
                 }
             }
             Route {
@@ -56,7 +57,7 @@ val app = fc<PropsWithChildren> {
             Route {
                 attrs {
                     path = "/app/home"
-                    element = Greeting.create()
+                    element = MainView.create()
                 }
             }
             Route {

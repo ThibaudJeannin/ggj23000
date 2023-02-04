@@ -222,6 +222,73 @@ val MainView = fc<Props> {
             attrs {
                 id = "items"
             }
+
+            styledDiv {
+                css {
+                    classes.add("item")
+                }
+                attrs {
+                    id = "conso"
+                }
+                styledDiv {
+                    css {
+                        classes.add("item-img")
+                    }
+                    attrs {
+                        id = "consoImg"
+                    }
+                }
+                styledDiv {
+                    css {
+                        classes.add("item-text")
+                    }
+                    + "CONSUMABLES"
+                }
+            }
+            styledDiv {
+                css {
+                    classes.add("item")
+                }
+                attrs {
+                    id = "objet"
+                }
+                styledDiv {
+                    css {
+                        classes.add("item-img")
+                    }
+                    attrs {
+                        id = "objetImg"
+                    }
+                }
+                styledDiv {
+                    css {
+                        classes.add("item-text")
+                    }
+                    + "OBJETS"
+                }
+            }
+            styledDiv {
+                css {
+                    classes.add("item")
+                }
+                attrs {
+                    id = "shop"
+                }
+                styledDiv {
+                    css {
+                        classes.add("item-img")
+                    }
+                    attrs {
+                        id = "shopImg"
+                    }
+                }
+                styledDiv {
+                    css {
+                        classes.add("item-text")
+                    }
+                    + "SHOPS"
+                }
+            }
         }
     }
 
@@ -299,7 +366,7 @@ val MainView = fc<Props> {
 
     script {
         val js = document.createElement("script")
-        js.setAttribute("src", "mainView.js")
+        js.setAttribute("src", "/mainView.js")
         document.body.appendChild(js)
     }
 }

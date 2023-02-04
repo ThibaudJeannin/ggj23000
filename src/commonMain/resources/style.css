@@ -85,6 +85,47 @@ body, html {
 
 #items {
   background-color: #600;
+  background-repeat: repeat;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    gap: .5rem;
+    border: 1px solid white;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.item-img {
+    height: 2rem;
+    aspect-ratio: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#consoImg {
+    background-image: url("assets/genericConso.png");
+}
+
+#objetImg {
+    background-image: url("assets/genericItem.png");
+}
+
+#shopImg {
+    background-image: url("assets/genericShop.png");
+}
+
+.item-text {
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
 }
 
 #sidebar {
