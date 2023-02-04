@@ -37,25 +37,26 @@ fetchMe = () => {
   fetch('/api/users/me')
     .then(r => r.json())
     .then(data => {
-      console.log(data)
+      const name = data?.publicUser?.userName
+      const tag = data?.userTag
+      document.getElementById('user').innerText = `Bonjour ${name} (Utilise ${tag}) pour te reconnecter` // todo yohann fait mieux
     })
 }
 
 updateParcelle = (parcelle) => {
-    console.log(parcelle)
-    displayResourcesNb(parcelle)
+  console.log(parcelle)
+  displayResourcesNb(parcelle)
 }
 
 displayResourcesNb = (parcelle) => {
-    document.querySelector("#wood > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.wood?.quantity)
-    document.querySelector("#fruits > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.fruits?.quantity)
-    document.querySelector("#iron > .resource-text").innerText = formatResourceNb(parcelle?.resourceStorage?.iron?.quantity)
+  document.querySelector('#wood > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.wood?.quantity)
+  document.querySelector('#fruits > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.fruits?.quantity)
+  document.querySelector('#iron > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.iron?.quantity)
 }
 
 
 formatResourceNb = (nb) => {
-    return nb != null && nb ? new Intl.NumberFormat("fr-FR", {maximumFractionDigits: 0}).format(nb) : 0
-
+  return nb != null && nb ? new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 0}).format(nb) : 0
 }
 
 fetchMe()

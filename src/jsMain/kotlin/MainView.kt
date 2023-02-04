@@ -1,7 +1,9 @@
 import browser.document
 import kotlinx.html.id
 import react.Props
-import react.dom.*
+import react.dom.attrs
+import react.dom.div
+import react.dom.script
 import react.fc
 import styled.css
 import styled.styledDiv
@@ -235,7 +237,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("item-text")
                     }
-                    + "CONSOMMABLES"
+                    +"CONSOMMABLES"
                 }
             }
             styledDiv {
@@ -257,7 +259,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("item-text")
                     }
-                    + "OBJETS"
+                    +"OBJETS"
                 }
             }
             styledDiv {
@@ -279,7 +281,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("item-text")
                     }
-                    + "MAGASIN"
+                    +"MAGASIN"
                 }
             }
         }
@@ -316,7 +318,7 @@ val MainView = fc<Props> {
                 attrs {
                     id = "upgrade_1"
                 }
-                + "UPGRADE"
+                +"UPGRADE"
             }
         }
 
@@ -334,7 +336,7 @@ val MainView = fc<Props> {
                     attrs {
                         id = "upgrade_2"
                     }
-                    + "UPGRADE"
+                    +"UPGRADE"
                 }
             }
         }
@@ -352,7 +354,15 @@ val MainView = fc<Props> {
                 attrs {
                     id = "upgrade_3"
                 }
-                + "UPGRADE"
+                +"UPGRADE"
+            }
+        }
+        styledDiv {
+            css {
+                classes.add("user")
+            }
+            attrs {
+                id = "user"
             }
         }
     }

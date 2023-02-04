@@ -55,39 +55,37 @@ body, html {
 }
 
 
-
-
 #container {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-rows: 4rem 4rem 1fr 4rem;
-  background-color: red;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 4rem 4rem 1fr 4rem;
+    background-color: red;
 }
 
 #resources {
-  background-image: url("assets/greystone.png");
-  background-repeat: repeat;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+    background-image: url("assets/greystone.png");
+    background-repeat: repeat;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 #bars {
-  background-color: #060;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+    background-color: #060;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 #gameview {
-  background-color: #006;
-  position: relative;
+    background-color: #006;
+    position: relative;
 }
 
 #items {
-  background-color: #600;
-  background-repeat: repeat;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+    background-color: #600;
+    background-repeat: repeat;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .item {
@@ -129,29 +127,29 @@ body, html {
 }
 
 #sidebar {
-  background-color: #660;
-  height: 100vh;
-  width: 25rem;
+    background-color: #660;
+    height: 100vh;
+    width: 25rem;
 
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-  transform: translateX(-100%);
-  transition: .3s;
+    transform: translateX(-100%);
+    transition: .3s;
 
-  overflow-x: hidden;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 #sidebar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 #sidebar.opened {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .perks {
@@ -194,12 +192,12 @@ body, html {
 #iron > .resource-text {
 }
 
-#wood > .resource-img  {
+#wood > .resource-img {
     scale: 1.3;
     background-image: url("assets/trunk_bottom.png");
 }
 
-#wood > .resource-text  {
+#wood > .resource-text {
 }
 
 .resource-text {
@@ -238,6 +236,7 @@ body, html {
     bottom: 0;
     position: absolute;
 }
+
 #actions-container {
     position: absolute;
     height: 100%;
@@ -291,5 +290,13 @@ body, html {
 }
 
 .strip.opened {
-  transform: translateX(25rem)
+    transform: translateX(25rem)
+}
+
+.user {
+    /*todo Yohann fait du beau */
+    background-color: beige;
+    height: 5vh;
+    width: 100%;
+    text-align: center;
 }
