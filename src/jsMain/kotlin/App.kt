@@ -1,9 +1,10 @@
 import io.ktor.client.*
+import io.ktor.client.plugins.*
 import io.ktor.client.plugins.cache.*
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.observer.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
+import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
 import kotlinx.serialization.json.Json
@@ -20,11 +21,12 @@ val scope = MainScope()
 val baseUrl = "${window.location.protocol}//${window.location.host}"
 
 val httpClient = HttpClient {
-    install(ResponseObserver) {
-        onResponse { response ->
-            if (response.status.value >= 300) {
-                println("HTTP status: ${response.status.value}")
-            }
+    followRedirects = false
+    expectSuccess = false
+
+    HttpResponseValidator {
+        validateResponse { response ->
+            console.log("ResponseValidator : $response")
         }
     }
     install(ContentNegotiation) {
@@ -37,6 +39,13 @@ val httpClient = HttpClient {
     install(HttpCache)
 }
 
+fun redirect(redirectLocation: String) {
+    window.location.replace(redirectLocation)
+    window.location.href = redirectLocation
+    document.location!!.replace(redirectLocation)
+    document.location!!.href = redirectLocation
+}
+
 val app = fc<PropsWithChildren> {
 
     BrowserRouter {
@@ -45,7 +54,7 @@ val app = fc<PropsWithChildren> {
                 attrs {
                     index = true
                     path = "/"
-                    element = LoginForm.create()
+                    element = MainView.create()
                 }
             }
             Route {
@@ -70,5 +79,6 @@ val app = fc<PropsWithChildren> {
                 }
             }
         }
+
     }
 }

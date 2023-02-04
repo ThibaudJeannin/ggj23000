@@ -97,3 +97,4 @@ class ParcelDao(id: EntityID<Int>) : Entity<Int>(id) {
 
 
 }
+

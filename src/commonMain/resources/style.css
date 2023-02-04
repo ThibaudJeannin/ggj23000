@@ -14,8 +14,15 @@ body, html {
     height: 100vh;
 }
 
+footer {
+    height: 1.5rem;
+    width: 100vw;
+    text-align: center;
+    background-color: #808080;
+}
+
 .login-container {
-    height: 100vh;
+    height: calc(100vh - 1.5rem);
     width: 100vw;
     display: grid;
     align-items: center;
@@ -55,39 +62,38 @@ body, html {
 }
 
 
-
-
 #container {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-rows: 4rem 4rem 1fr 4rem;
-  background-color: red;
+    height: calc(100vh - 1.5rem);
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 4rem 4rem 1fr 4rem;
 }
 
 #resources {
-  background-image: url("assets/greystone.png");
-  background-repeat: repeat;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+    background-image: url("assets/greystone.png");
+    background-repeat: repeat;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 #bars {
-  background-color: #060;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+    background-color: #060;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 #gameview {
-  background-color: #006;
-  position: relative;
+    background: rgb(2,0,36);
+    background: linear-gradient(360deg, rgba(2,0,36,1) 0%, rgba(23,139,21,1) 14%, rgba(30,187,16,1) 35%, rgba(0,212,255,1) 36%, rgba(3,191,229,1) 80%, rgba(17,109,127,1) 100%);
+
+    position: relative;
 }
 
 #items {
-  background-color: #600;
-  background-repeat: repeat;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+    background-color: #600;
+    background-repeat: repeat;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .item {
@@ -97,10 +103,14 @@ body, html {
     height: 100%;
     width: 100%;
     gap: .5rem;
-    border: 1px solid white;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+}
+
+#objet {
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
 }
 
 .item-img {
@@ -129,38 +139,54 @@ body, html {
 }
 
 #sidebar {
-  background-color: #660;
-  height: 100vh;
-  width: 25rem;
+    background-color: #660;
+    height: 100vh;
+    width: 50vw;
 
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-  transform: translateX(-100%);
-  transition: .3s;
+    transform: translateX(-100%);
+    transition: .3s;
 
-  overflow-x: hidden;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    z-index: 1;
 }
 
 #sidebar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 #sidebar.opened {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .perks {
-    margin: 5rem 2.5rem;
+    margin: 1.25rem 2.5rem;
     display: inline-block;
-    background-color: yellow;
-    height: 20rem;
-    width: 20rem;
-    position: relative
+    background-color: none;
+    height: 10rem;
+    width: 10rem;
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#perk_1 {
+    background-image: url("assets/basics.png");
+}
+#perk_2 {
+    background-image: url("assets/wood.png");
+}
+#perk_3 {
+    background-image: url("assets/fruits.png");
+}
+#perk_4 {
+    background-image: url("assets/fer.png");
 }
 
 .resource {
@@ -178,19 +204,29 @@ body, html {
     background-size: contain;
 }
 
-#apple {
+#fruits > .resource-img {
     scale: 2;
     background-image: url("assets/apple.png");
 }
 
-#iron {
-    scale: 2.5;
-    background-image: url("assets/ore_silver.png");
+#fruits > .resource-text {
 }
 
-#wood {
+#iron > .resource-img {
+    scale: 2.5;
+    background-image: url("assets/ore_silver.png");
+    transform: rotate(110deg);
+}
+
+#iron > .resource-text {
+}
+
+#wood > .resource-img {
     scale: 1.3;
     background-image: url("assets/trunk_bottom.png");
+}
+
+#wood > .resource-text {
 }
 
 .resource-text {
@@ -223,12 +259,13 @@ body, html {
 .upgrade_button {
     background-color: orange;
     margin: 0 5rem;
-    height: 5rem;
-    width: 10rem;
+    height: 2.5rem;
+    width: 5rem;
     text-align: center;
     bottom: 0;
     position: absolute;
 }
+
 #actions-container {
     position: absolute;
     height: 100%;
@@ -240,7 +277,7 @@ body, html {
 
 #actions {
     display: flex;
-    gap: 4rem;
+    gap: 12vw;
     height: fit-content;
     margin-bottom: 2rem;
 }
@@ -282,5 +319,58 @@ body, html {
 }
 
 .strip.opened {
-  transform: translateX(25rem)
+    transform: translateX(50vw)
+}
+
+#user {
+    background-color: beige;
+    height: 5vh;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.subsidebar {
+    height: 100vh;
+    width: 50vw;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transform: translateX(-100%);
+    transition: 1s;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.subsidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.subsidebar.opened {
+    transform: translateX(50vw);
+}
+
+#subsidebar_1 {
+    background-color: purple;
+}
+#subsidebar_2 {
+    background-color: red;
+}
+#subsidebar_3 {
+    background-color: yellow;
+}
+#subsidebar_4 {
+    background-color: green;
+}
+
+.tree {
+    height: 20vh;
+    position: absolute;
+    top: 0;
 }

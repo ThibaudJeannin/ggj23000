@@ -43,7 +43,7 @@ fun Application.module() {
     val dbPassword: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
 
 
-    print("$dbUrl, $dbPort, $dbBase")
+    println("Config : $dbUrl, $dbBase, $dbUser")
 //    setupDatabase(dbUrl, dbBase, dbUser, dbPassword)
     Database.connect("$dbUrl/$dbBase", "org.postgresql.Driver", dbUser, dbPassword)
 
@@ -91,7 +91,7 @@ fun Application.module() {
 
     routing {
         static("/") {
-            resources(".")
+            resources("/")
             resource("/", "index.html")
             resource("style.css")
             resource("ggj23000.js")

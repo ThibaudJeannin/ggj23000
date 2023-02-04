@@ -1,11 +1,12 @@
 import browser.document
 import kotlinx.html.id
 import react.Props
-import react.dom.*
+import react.dom.attrs
+import react.dom.div
+import react.dom.script
 import react.fc
 import styled.css
 import styled.styledDiv
-import styled.styledSpan
 
 val MainView = fc<Props> {
 
@@ -20,6 +21,9 @@ val MainView = fc<Props> {
             }
 
             styledDiv {
+                attrs {
+                    id = "wood"
+                }
                 css {
                     classes.add("resource")
                 }
@@ -28,21 +32,19 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-img")
                     }
-                    attrs {
-                        id = "wood"
-                    }
                 }
 
                 styledDiv {
                     css {
                         classes.add("resource-text")
                     }
-
-                    +"100"
                 }
             }
 
             styledDiv {
+                attrs {
+                    id = "fruits"
+                }
                 css {
                     classes.add("resource")
                 }
@@ -51,21 +53,19 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-img")
                     }
-                    attrs {
-                        id = "apple"
-                    }
                 }
 
                 styledDiv {
                     css {
                         classes.add("resource-text")
                     }
-
-                    +"100"
                 }
             }
 
             styledDiv {
+                attrs {
+                    id = "iron"
+                }
                 css {
                     classes.add("resource")
                 }
@@ -74,17 +74,12 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-img")
                     }
-                    attrs {
-                        id = "iron"
-                    }
                 }
 
                 styledDiv {
                     css {
                         classes.add("resource-text")
                     }
-
-                    +"100"
                 }
             }
         }
@@ -242,7 +237,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("item-text")
                     }
-                    + "CONSUMABLES"
+                    +"CONSOMMABLES"
                 }
             }
             styledDiv {
@@ -264,7 +259,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("item-text")
                     }
-                    + "OBJETS"
+                    +"OBJETS"
                 }
             }
             styledDiv {
@@ -286,7 +281,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("item-text")
                     }
-                    + "SHOPS"
+                    +"MAGASIN"
                 }
             }
         }
@@ -316,15 +311,6 @@ val MainView = fc<Props> {
                 id = "perk_1"
 
             }
-            styledDiv {
-                css {
-                    classes.add("upgrade_button")
-                }
-                attrs {
-                    id = "upgrade_1"
-                }
-                + "UPGRADE"
-            }
         }
 
         styledDiv {
@@ -333,16 +319,6 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "perk_2"
-
-                styledDiv {
-                    css {
-                        classes.add("upgrade_button")
-                    }
-                    attrs {
-                        id = "upgrade_2"
-                    }
-                    + "UPGRADE"
-                }
             }
         }
         styledDiv {
@@ -350,17 +326,57 @@ val MainView = fc<Props> {
                 classes.add("perks")
             }
             attrs {
-                id = "perk3"
+                id = "perk_3"
             }
-            styledDiv {
-                css {
-                    classes.add("upgrade_button")
-                }
-                attrs {
-                    id = "upgrade_3"
-                }
-                + "UPGRADE"
+        }
+        styledDiv {
+            css {
+                classes.add("perks")
             }
+            attrs {
+                id = "perk_4"
+            }
+        }
+        styledDiv {
+            css {
+                classes.add("user")
+            }
+            attrs {
+                id = "user"
+            }
+        }
+    }
+
+    styledDiv {
+        css {
+            classes.add("subsidebar")
+        }
+        attrs {
+            id = "subsidebar_1"
+        }
+    }
+    styledDiv {
+        css {
+            classes.add("subsidebar")
+        }
+        attrs {
+            id = "subsidebar_2"
+        }
+    }
+    styledDiv {
+        css {
+            classes.add("subsidebar")
+        }
+        attrs {
+            id = "subsidebar_3"
+        }
+    }
+    styledDiv {
+        css {
+            classes.add("subsidebar")
+        }
+        attrs {
+            id = "subsidebar_4"
         }
     }
 
