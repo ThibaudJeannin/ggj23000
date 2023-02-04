@@ -209,10 +209,23 @@ body, html {
     border-radius: 10rem;
     height: 4rem;
     aspect-ratio: 1;
+    background-size: contain;
 }
 
 .action:hover {
     cursor: pointer;
+}
+
+#axe {
+    background-image: url("assets/axe_bronze.png");
+}
+
+#pickaxe {
+    background-image: url("assets/pick_bronze.png");
+}
+
+#hoe {
+    background-image: url("assets/hoe_bronze.png");
 }
 
 .strip {
