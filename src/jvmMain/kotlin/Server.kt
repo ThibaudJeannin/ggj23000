@@ -86,7 +86,7 @@ fun Application.module() {
 
     routing {
         static("/") {
-            resources(".")
+            resources("/")
             resource("/", "index.html")
             resource("style.css")
             resource("ggj23000.js")

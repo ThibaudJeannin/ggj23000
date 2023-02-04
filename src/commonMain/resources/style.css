@@ -83,7 +83,9 @@ footer {
 }
 
 #gameview {
-    background-color: #006;
+    background: rgb(2,0,36);
+    background: linear-gradient(360deg, rgba(2,0,36,1) 0%, rgba(23,139,21,1) 14%, rgba(30,187,16,1) 35%, rgba(0,212,255,1) 36%, rgba(3,191,229,1) 80%, rgba(17,109,127,1) 100%);
+
     position: relative;
 }
 
@@ -326,4 +328,10 @@ footer {
     text-align: center;
     position: absolute;
     bottom: 0;
+}
+
+.tree {
+    height: 20vh;
+    position: absolute;
+    top: 0;
 }
