@@ -39,7 +39,7 @@ fun Application.module() {
     val dbPassword: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
 
 
-    println("Config : $dbUrl, $dbPort, $dbBase")
+    println("Config : $dbUrl, $dbBase, $dbUser")
 //    setupDatabase(dbUrl, dbBase, dbUser, dbPassword)
     Database.connect("$dbUrl/$dbBase", "org.postgresql.Driver", dbUser, dbPassword)
 
