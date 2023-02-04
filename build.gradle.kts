@@ -21,6 +21,7 @@ val versionReactRouter = "6.3.0-pre.457"
 val versionStyledComponents = "5.3.6"
 val versionKotlinStyled = "5.3.6-pre.457"
 val versionExposed = "0.41.1"
+val versionQuartz = "2.3.2"
 
 repositories {
     mavenCentral()
