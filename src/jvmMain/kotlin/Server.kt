@@ -118,6 +118,15 @@ fun Application.module() {
                 get("/parcels/mine") {
                     call.respond(Parcel())
                 }
+                get("/parcels/mine/harvest/wood"){
+                    call.respond(Parcel().harvestWood())
+                }
+                get("/parcels/mine/harvest/fruits"){
+                    call.respond(Parcel().harvestFruits())
+                }
+                get("/parcels/mine/harvest/iron"){
+                    call.respond(Parcel().harvestIron())
+                }
             }
         }
 
