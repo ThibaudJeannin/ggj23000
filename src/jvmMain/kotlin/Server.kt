@@ -26,17 +26,19 @@ import org.jetbrains.exposed.sql.transactions.transaction
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun Application.module() {
-    setupDatabase()
-
     val env = System.getenv()
     val host: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
     val port: String = env.getOrDefault("POSTGRESQL_ADDON_PORT", "5432")
     val base: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "test_db")
-    val url = "jdbc:postgresql://$host:$port/$base"
+    val url = "jdbc:postgresql://$host:$port"
     val user: String = env.getOrDefault("POSTGRESQL_ADDON_USER", "postgres")
     val password: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
 
-    Database.connect(url, "org.postgresql.Driver", user, password)
+    print("$url, $port, $base, $user, $password")
+
+    setupDatabase(url, base, user, password)
+
+    Database.connect("$url/$base", "org.postgresql.Driver", user, password)
     transaction {
         SchemaUtils.create(Users)
     }
@@ -159,21 +161,15 @@ fun Application.module() {
     }
 }
 
-private fun setupDatabase() {
-    Database.connect("jdbc:postgresql://localhost:5432/", "org.postgresql.Driver", "postgres", "password")
+private fun setupDatabase(url: String, base: String, user: String, password: String) {
+    Database.connect(url, "org.postgresql.Driver", user, password)
     try {
         transaction {
             connection.autoCommit = true
-            SchemaUtils.dropDatabase("test_db")
+            SchemaUtils.createDatabase(base)
             connection.autoCommit = false
         }
     } catch (_: Exception) {
 
-    }
-
-    transaction {
-        connection.autoCommit = true
-        SchemaUtils.createDatabase("test_db")
-        connection.autoCommit = false
     }
 }
