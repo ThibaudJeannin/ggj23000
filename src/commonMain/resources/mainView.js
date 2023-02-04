@@ -110,9 +110,9 @@ setInterval(fetchParcelle, 5 * 60 * 1000)
 // GAME VIEW
 
 const view = document.getElementById('gameview')
-var trees = []
-var fruits = []
-var iron = []
+const trees = []
+const fruits = []
+const iron = []
 
 updateDisplay = (parcelle) => {
 
@@ -135,8 +135,7 @@ generateTrees = (number) => {
     tree.obj = document.createElement('img')
     tree.obj.id = 'tree' + tree.id
     tree.obj.classList.add('tree')
-    tree.obj.src = `/assets/tree${Math.floor(Math.random() * 8)}.png`
-    // tree.style.backgroundImage = `url("/assets/tree${Math.floor(Math.random()*8)}.png")`
+    tree.obj.src = `/assets/trees/tree${Math.floor(Math.random() * 8)}.png`
 
     tree.zIndex = Math.floor(Math.random() * 50)
 
