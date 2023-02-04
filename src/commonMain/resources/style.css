@@ -22,7 +22,7 @@ footer {
 }
 
 .login-container {
-    height: 100vh;
+    height: calc(100vh - 1.5rem);
     width: 100vw;
     display: grid;
     align-items: center;

@@ -16,6 +16,14 @@ val LoginForm = fc<Props> {
             classes.add("login-container")
         }
 
+        h1 {
+           + "Forêt 3000 \uD83C\uDF33\uD83C\uDF32"
+        }
+
+        h3 {
+            + "Jeu de gestion de forêt. Obtenez la racine magique pour sauver la planète. Mais attention, chaque action a des conséquences sur votre foret !"
+        }
+
         styledDiv {
             css {
                 classes.add("login-form")
@@ -26,7 +34,7 @@ val LoginForm = fc<Props> {
                     classes.add("login-form-title")
                 }
 
-                + "LOGIN"
+                +"Se connecter"
             }
 
             form {
@@ -42,7 +50,7 @@ val LoginForm = fc<Props> {
                         placeholder = "####"
                         name = "usertag"
                         required = true
-                        maxLength="4"
+                        maxLength = "4"
                     }
                     css {
                         classes.add("login-form-input")
@@ -69,7 +77,7 @@ val LoginForm = fc<Props> {
                     classes.add("login-form-title")
                 }
 
-                + "SIGNUP"
+                +"Inscription"
             }
 
             form {
@@ -81,7 +89,7 @@ val LoginForm = fc<Props> {
                 styledInput {
                     attrs {
                         type = InputType.text
-                        placeholder = "Your name here"
+                        placeholder = "Votre nom"
                         name = "usrname"
                         required = true
                     }
