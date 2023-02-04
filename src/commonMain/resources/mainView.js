@@ -62,6 +62,8 @@ formatResourceNb = (nb) => {
 fetchMe()
 fetchParcelle()
 
+setInterval(fetchParcelle, 5 * 60 * 1000)
+
 
 
 
