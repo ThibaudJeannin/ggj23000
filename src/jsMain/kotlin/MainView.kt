@@ -362,6 +362,42 @@ val MainView = fc<Props> {
         attrs {
             id = "subsidebar_2"
         }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "cabane_1"
+            }
+            + "Niveau 0"
+        }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "timber_1"
+            }
+            + "Niveau 0"
+        }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "forest_1"
+            }
+            + "Niveau 0"
+        }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "fred_1"
+            }
+            + "Niveau 0"
+        }
     }
     styledDiv {
         css {
@@ -369,6 +405,15 @@ val MainView = fc<Props> {
         }
         attrs {
             id = "subsidebar_3"
+        }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "hangar_1"
+            }
+            + "Niveau 0"
         }
     }
     styledDiv {
@@ -384,8 +429,8 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "mine_1"
-
             }
+            + "Niveau 0"
         }
 
         styledDiv {
@@ -395,6 +440,7 @@ val MainView = fc<Props> {
             attrs {
                 id = "warehouse_1"
             }
+            + "Niveau 0"
         }
     }
 
