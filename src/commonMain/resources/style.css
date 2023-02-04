@@ -114,10 +114,11 @@ body, html {
 
 .perks {
     margin: 5rem 2.5rem;
-    display: block-inline;
+    display: inline-block;
     background-color: yellow;
     height: 20rem;
     width: 20rem;
+    position: relative
 }
 
 .resource {
@@ -162,6 +163,15 @@ body, html {
     width: 100%;
 }
 
+.upgrade_button {
+    background-color: orange;
+    margin: 0 5rem;
+    height: 5rem;
+    width: 10rem;
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+}
 #actions-container {
     position: absolute;
     height: 100%;
@@ -187,4 +197,21 @@ body, html {
 
 .action:hover {
     cursor: pointer;
+}
+
+.strip {
+    width: 0;
+    height: 0;
+    border-top: 4rem solid transparent;
+    border-bottom: 4rem solid transparent;
+    border-left: 4rem solid green;
+    position: absolute;
+    top: 50vh;
+    left: 0;
+    transition: .3s;
+}
+
+
+.strip.opened {
+  transform: translateX(25rem)
 }
