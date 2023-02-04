@@ -43,6 +43,7 @@ fetchMe = () => {
 
 updateParcelle = (parcelle) => {
   console.log(parcelle)
+
 }
 
 fetchMe()

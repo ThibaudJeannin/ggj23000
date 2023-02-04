@@ -25,7 +25,7 @@ class Parcel() {
         resourceStorage.addProduction(Production(constants.wood.PRODUCTION, constants.fruits.PRODUCTION, constants.iron.PRODUCTION))
     }
 
-    fun harvestWood() {
+    fun harvestWood(): Parcel {
         if (naturalResources.trees - harvestWoodRate < 0) {
             throw InsufficientNaturalResourcesException("cannot harvest natural resource : insufficient wood")
         }
@@ -45,9 +45,11 @@ class Parcel() {
         if (abs(Random.nextInt()) % 100 < seedLootRate) {
             this.items.add(Seed())
         }
+
+        return this
     }
 
-    fun harvestFruits() {
+    fun harvestFruits(): Parcel {
 
         if (naturalResources.fruits - harvestFruitRate < 0) {
             throw InsufficientNaturalResourcesException("cannot harvest natural resource : insufficient fruits")
@@ -67,9 +69,11 @@ class Parcel() {
         if (abs(Random.nextInt()) % 100 < (seedLootRate * 2)) {
             this.items.add(Seed())
         }
+
+        return this
     }
 
-    fun harvestIron() {
+    fun harvestIron(): Parcel {
 
         if (naturalResources.iron - harvestIronRate < 0) {
             throw InsufficientNaturalResourcesException("cannot harvest natural resource : insufficient iron")
@@ -90,7 +94,8 @@ class Parcel() {
             val rng = (constants.iron.MIN_HARVEST_AMOUNT..constants.iron.MAX_HARVEST_AMOUNT).random().toFloat()
 
             resourceStorage.iron.addToStorage(rng)
-
         }
+
+        return this
     }
 }
