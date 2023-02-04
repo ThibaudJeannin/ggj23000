@@ -34,7 +34,7 @@ val MainView = fc<Props> {
                         classes.add("resource-text")
                     }
 
-                    + "100"
+                    +"100"
                 }
             }
 
@@ -54,7 +54,7 @@ val MainView = fc<Props> {
                         classes.add("resource-text")
                     }
 
-                    + "100"
+                    +"100"
                 }
             }
 
@@ -74,7 +74,7 @@ val MainView = fc<Props> {
                         classes.add("resource-text")
                     }
 
-                    + "100"
+                    +"100"
                 }
             }
         }
@@ -99,7 +99,7 @@ val MainView = fc<Props> {
                             classes.add("bar-text")
                         }
 
-                        + "BIO"
+                        +"BIO"
                     }
 
                     styledDiv {
@@ -125,7 +125,7 @@ val MainView = fc<Props> {
                             classes.add("bar-text")
                         }
 
-                        + "AIR"
+                        +"AIR"
                     }
 
                     styledDiv {
@@ -151,7 +151,7 @@ val MainView = fc<Props> {
                             classes.add("bar-text")
                         }
 
-                        + "SOL"
+                        +"SOL"
                     }
 
                     styledDiv {
@@ -216,16 +216,36 @@ val MainView = fc<Props> {
                 classes.add("perks")
             }
             attrs {
-                id = "perk1"
+                id = "perk_1"
 
             }
+            styledDiv {
+                css {
+                    classes.add("upgrade_button")
+                }
+                attrs {
+                    id = "upgrade_1"
+                }
+                + "UPGRADE"
+            }
         }
+
         styledDiv {
             css {
                 classes.add("perks")
             }
             attrs {
-                id = "perk2"
+                id = "perk_2"
+
+                styledDiv {
+                    css {
+                        classes.add("upgrade_button")
+                    }
+                    attrs {
+                        id = "upgrade_2"
+                    }
+                    + "UPGRADE"
+                }
             }
         }
         styledDiv {
@@ -234,6 +254,15 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "perk3"
+            }
+            styledDiv {
+                css {
+                    classes.add("upgrade_button")
+                }
+                attrs {
+                    id = "upgrade_3"
+                }
+                + "UPGRADE"
             }
         }
     }
