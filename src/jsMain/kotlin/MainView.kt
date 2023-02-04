@@ -5,7 +5,6 @@ import react.dom.*
 import react.fc
 import styled.css
 import styled.styledDiv
-import styled.styledSpan
 
 val MainView = fc<Props> {
 
@@ -20,6 +19,9 @@ val MainView = fc<Props> {
             }
 
             styledDiv {
+                attrs {
+                    id = "wood"
+                }
                 css {
                     classes.add("resource")
                 }
@@ -28,21 +30,19 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-img")
                     }
-                    attrs {
-                        id = "wood"
-                    }
                 }
 
                 styledDiv {
                     css {
                         classes.add("resource-text")
                     }
-
-                    +"100"
                 }
             }
 
             styledDiv {
+                attrs {
+                    id = "fruits"
+                }
                 css {
                     classes.add("resource")
                 }
@@ -51,21 +51,19 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-img")
                     }
-                    attrs {
-                        id = "apple"
-                    }
                 }
 
                 styledDiv {
                     css {
                         classes.add("resource-text")
                     }
-
-                    +"100"
                 }
             }
 
             styledDiv {
+                attrs {
+                    id = "iron"
+                }
                 css {
                     classes.add("resource")
                 }
@@ -74,17 +72,12 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-img")
                     }
-                    attrs {
-                        id = "iron"
-                    }
                 }
 
                 styledDiv {
                     css {
                         classes.add("resource-text")
                     }
-
-                    +"100"
                 }
             }
         }
