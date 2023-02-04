@@ -1,5 +1,8 @@
 package ggj
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class Indicators() {
     val bio = Indicator()
     val air = Indicator()
