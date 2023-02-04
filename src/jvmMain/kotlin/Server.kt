@@ -28,7 +28,15 @@ fun main(args: Array<String>): Unit = EngineMain.main(args)
 fun Application.module() {
     setupDatabase()
 
-    Database.connect("jdbc:postgresql://localhost:5432/test_db", "org.postgresql.Driver", "postgres", "password")
+    val env = System.getenv()
+    val host: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
+    val port: String = env.getOrDefault("POSTGRESQL_ADDON_PORT", "5432")
+    val base: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "test_db")
+    val url = "jdbc:postgresql://$host:$port/$base"
+    val user: String = env.getOrDefault("POSTGRESQL_ADDON_USER", "postgres")
+    val password: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "pass")
+
+    Database.connect(url, "org.postgresql.Driver", user, password)
     transaction {
         SchemaUtils.create(Users)
     }
@@ -60,7 +68,7 @@ fun Application.module() {
             validate {
                 transaction {
                     val user = Users.select(Users.id eq it.userId)
-                        .singleOrNull()
+                            .singleOrNull()
                     if (user != null) it else null
                 }
             }
@@ -87,10 +95,10 @@ fun Application.module() {
                     var user: UserMe? = null
                     transaction {
                         user = Users.select(Users.id eq userSession!!.userId)
-                            .map { resultRow ->
-                                UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
-                            }
-                            .singleOrNull()
+                                .map { resultRow ->
+                                    UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
+                                }
+                                .singleOrNull()
                     }
                     if (user == null) {
                         call.respond(HttpStatusCode.NotFound)
@@ -133,10 +141,10 @@ fun Application.module() {
                 var user: UserMe? = null
                 transaction {
                     user = Users.select(Users.tag eq userTag!!)
-                        .map { resultRow ->
-                            UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
-                        }
-                        .singleOrNull()
+                            .map { resultRow ->
+                                UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
+                            }
+                            .singleOrNull()
                 }
                 if (user != null) {
                     call.sessions.set("user_session", UserSession(user?.publicUser!!.userId))
@@ -160,7 +168,7 @@ private fun setupDatabase() {
             connection.autoCommit = false
         }
     } catch (_: Exception) {
-        
+
     }
 
     transaction {

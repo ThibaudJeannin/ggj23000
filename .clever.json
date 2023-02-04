@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_647a1c5b-8272-4a62-96a7-9862f26c2740",
+      "org_id": "orga_cc964ae1-b87d-4bc5-bca9-e9f69f65ea0e",
+      "deploy_url": "https://push-n2-par-clevercloud-customers.services.clever-cloud.com/app_647a1c5b-8272-4a62-96a7-9862f26c2740.git",
+      "name": "ggj23",
+      "alias": "ggj23"
+    }
+  ]
+}
