@@ -11,13 +11,16 @@ class Parcel() {
 
     private var harvestWoodValue = 10.0f
     private var harvestFruitValue = 2.0f
+    //private var harvestIronValue = 0.5f
+
     private var harvestWoodRate = 1
     private var harvestFruitRate = 1
-    // %
-    private var seedLootRate = 5;
+    private var harvestIronRate = 1
+
+    private var seedLootRate = 5; // in %
 
     fun produceResources() {
-        resourceStorage.addProduction(Production(WOOD_PRODUCTION, FRUITS_PRODUCTION, IRON_PRODUCTION))
+        resourceStorage.addProduction(Production(constants.wood.PRODUCTION, constants.fruits.PRODUCTION, constants.iron.PRODUCTION))
     }
 
     fun harvestWood() {
@@ -28,9 +31,14 @@ class Parcel() {
         naturalResources.trees--
         resourceStorage.wood.addToStorage(harvestWoodValue)
 
-        indicators.bio.value -= WOOD_BIO_MODIFYER
-        indicators.bio.evolution -= WOOD_BIO_EVO_MODIFYER
-        indicators.air.evolution -= WOOD_AIR_EVO_MODIFYER
+        indicators.bio.value -= constants.wood.BIO_MODIFYER
+        indicators.bio.evolution -= constants.wood.BIO_EVO_MODIFYER
+
+        indicators.air.evolution -= constants.wood.AIR_EVO_MODIFYER
+        indicators.air.value -= constants.wood.AIR_MODIFYER
+
+        indicators.soil.evolution -= constants.wood.SOIL_EVO_MODIFYER
+        indicators.soil.value -= constants.wood.SOIL_MODIFYER
 
         if (abs(Random.nextInt()) % 100 < seedLootRate) {
             this.items.add(Seed())
@@ -45,10 +53,42 @@ class Parcel() {
 
         resourceStorage.fruits.addToStorage(harvestFruitValue)
 
-        indicators.bio.evolution -= FRUIT_BIO_EVO_MODIFYER
+        indicators.bio.value -= constants.fruits.BIO_MODIFYER
+        indicators.bio.evolution -= constants.fruits.BIO_EVO_MODIFYER
+
+        indicators.air.evolution -= constants.fruits.AIR_EVO_MODIFYER
+        indicators.air.value -= constants.fruits.AIR_MODIFYER
+
+        indicators.soil.evolution -= constants.fruits.SOIL_EVO_MODIFYER
+        indicators.soil.value -= constants.fruits.SOIL_MODIFYER
 
         if (abs(Random.nextInt()) % 100 < (seedLootRate * 2)) {
             this.items.add(Seed())
+        }
+    }
+
+    fun harvestIron() {
+
+        if (naturalResources.iron - harvestIronRate < 0) {
+            throw InsufficientNaturalResourcesException("cannot harvest natural resource : insufficient iron")
+        }
+
+
+        indicators.bio.value -= constants.iron.BIO_MODIFYER
+        indicators.bio.evolution -= constants.iron.BIO_EVO_MODIFYER
+
+        indicators.air.evolution -= constants.iron.AIR_EVO_MODIFYER
+        indicators.air.value -= constants.iron.AIR_MODIFYER
+
+        indicators.soil.evolution -= constants.iron.SOIL_EVO_MODIFYER
+        indicators.soil.value -= constants.iron.SOIL_MODIFYER
+
+        if (abs(Random.nextInt()) % 100 < (constants.iron.HARVEST_PROBA)) {
+
+            var rng = (constants.iron.MIN_HARVEST_AMOUNT..constants.iron.MAX_HARVEST_AMOUNT).random().toFloat()
+
+            resourceStorage.iron.addToStorage(rng)
+
         }
     }
 }
