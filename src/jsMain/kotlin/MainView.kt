@@ -28,25 +28,8 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-img")
                     }
-                }
-
-                styledDiv {
-                    css {
-                        classes.add("resource-text")
-                    }
-
-                    +"100"
-                }
-            }
-
-            styledDiv {
-                css {
-                    classes.add("resource")
-                }
-
-                styledDiv {
-                    css {
-                        classes.add("resource-img")
+                    attrs {
+                        id = "wood"
                     }
                 }
 
@@ -67,6 +50,32 @@ val MainView = fc<Props> {
                 styledDiv {
                     css {
                         classes.add("resource-img")
+                    }
+                    attrs {
+                        id = "apple"
+                    }
+                }
+
+                styledDiv {
+                    css {
+                        classes.add("resource-text")
+                    }
+
+                    +"100"
+                }
+            }
+
+            styledDiv {
+                css {
+                    classes.add("resource")
+                }
+
+                styledDiv {
+                    css {
+                        classes.add("resource-img")
+                    }
+                    attrs {
+                        id = "iron"
                     }
                 }
 

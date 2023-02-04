@@ -1,5 +1,8 @@
 {
   "build": {
     "goal": "./gradlew build"
+  },
+  "deploy": {
+    "goal": "ls build/libs && java -jar build/libs/*-all.jar"
   }
 }

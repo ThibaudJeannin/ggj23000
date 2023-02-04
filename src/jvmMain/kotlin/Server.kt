@@ -33,14 +33,15 @@ fun Application.module() {
     val dbHost: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
     val dbPort: String = env.getOrDefault("POSTGRESQL_ADDON_PORT", "5432")
     val dbBase: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "ggj23_db")
-    val dbUrl = "jdbc:postgresql://$dbHost:$dbPort"
+    val dbUrl = "jdbc:postgresql://$dbHost:$dbPort/"
     val dbUser: String = env.getOrDefault("POSTGRESQL_ADDON_USER", "postgres")
     val dbPassword: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
 
+
     print("$dbUrl, $dbPort, $dbBase, $dbUser, $dbPassword")
 //    setupDatabase(dbUrl, dbBase, dbUser, dbPassword)
-
     Database.connect("$dbUrl/$dbBase", "org.postgresql.Driver", dbUser, dbPassword)
+
     transaction {
         SchemaUtils.create(Users)
     }
