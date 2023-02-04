@@ -2,6 +2,7 @@ import ggj.User
 import ggj.UserMe
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import kotlinx.browser.window
 import kotlinx.coroutines.launch
 import react.Props
 import react.dom.a
@@ -38,6 +39,10 @@ val Greeting = fc<Props> {
 
 suspend fun getCurrentUser(): UserMe {
     console.log("retrieve current user")
-    return httpClient.get("${baseUrl}/api/users/me").body()
+    val getResponse = httpClient.get("${baseUrl}/api/users/me")
+    if (getResponse.status.value == 302) {
+        redirect(getResponse.headers["Location"]!!)
+    }
+    return getResponse.body()
 }
 
