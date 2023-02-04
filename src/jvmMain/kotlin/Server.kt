@@ -34,7 +34,7 @@ fun Application.module() {
     val base: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "test_db")
     val url = "jdbc:postgresql://$host:$port/$base"
     val user: String = env.getOrDefault("POSTGRESQL_ADDON_USER", "postgres")
-    val password: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "pass")
+    val password: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
 
     Database.connect(url, "org.postgresql.Driver", user, password)
     transaction {
