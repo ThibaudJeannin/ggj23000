@@ -116,17 +116,18 @@ fun Application.module() {
 
                 }
 
+                val parcel = Parcel() // todo use dao
                 get("/parcels/mine") {
-                    call.respond(Parcel())
+                    call.respond(parcel)
                 }
                 get("/parcels/mine/harvest/wood"){
-                    call.respond(Parcel().harvestWood())
+                    call.respond(parcel.harvestWood())
                 }
                 get("/parcels/mine/harvest/fruits"){
-                    call.respond(Parcel().harvestFruits())
+                    call.respond(parcel.harvestFruits())
                 }
                 get("/parcels/mine/harvest/iron"){
-                    call.respond(Parcel().harvestIron())
+                    call.respond(parcel.harvestIron())
                 }
             }
         }
