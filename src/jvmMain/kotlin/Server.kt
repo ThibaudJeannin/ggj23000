@@ -28,7 +28,7 @@ fun main(args: Array<String>): Unit = EngineMain.main(args)
 fun Application.module() {
     setupDatabase()
 
-    val env = System.getEnv()
+    val env = System.getenv()
     val host: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
     val port: String = env.getOrDefault("POSTGRESQL_ADDON_PORT", "5432")
     val base: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "test_db")
