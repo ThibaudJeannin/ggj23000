@@ -90,6 +90,7 @@ fun Application.module() {
             resource("/", "index.html")
             resource("style.css")
             resource("ggj23000.js")
+            resource("/app", "index.html")
             resource("/app/*", "index.html")
             resource("favicon.ico")
             resource("mainView.js")
