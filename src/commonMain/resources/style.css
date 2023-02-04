@@ -154,7 +154,7 @@ footer {
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    z-index: 1;
+    z-index: 1001;
 }
 
 #sidebar::-webkit-scrollbar {
@@ -311,11 +311,12 @@ footer {
     height: 0;
     border-top: 4rem solid transparent;
     border-bottom: 4rem solid transparent;
-    border-left: 4rem solid green;
+    border-left: 4rem solid #660;
     position: absolute;
     top: 50vh;
     left: 0;
     transition: .3s;
+    z-index: 1000;
 }
 
 .strip.opened {
@@ -346,6 +347,7 @@ footer {
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    z-index: 1000;
 }
 
 .subsidebar::-webkit-scrollbar {
@@ -367,6 +369,13 @@ footer {
 }
 #subsidebar_4 {
     background-color: green;
+}
+
+#mine_1 {
+    background-image: url("assets/basics.png");
+}
+#warehouse_1 {
+    background-image: url("assets/wood.png");
 }
 
 .tree {

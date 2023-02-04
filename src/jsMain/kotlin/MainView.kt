@@ -378,6 +378,24 @@ val MainView = fc<Props> {
         attrs {
             id = "subsidebar_4"
         }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "mine_1"
+
+            }
+        }
+
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "warehouse_1"
+            }
+        }
     }
 
     script {
