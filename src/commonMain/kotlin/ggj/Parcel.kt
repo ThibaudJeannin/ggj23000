@@ -1,6 +1,12 @@
 package ggj
 
-class Parcel(val indicator: Indicators, val naturalResources: NaturalResources, var tree: Float = 10000.0f) {
+class Parcel() {
 
+    val resourceStorage = ResourceStorage()
+    val indicators = Indicators()
+    val naturalResources = NaturalResources()
 
+    fun produceResources() {
+
+    }
 }
