@@ -359,6 +359,23 @@ val MainView = fc<Props> {
         }
         styledDiv {
             css {
+                classes.add("perks")
+            }
+            attrs {
+                id = "perk4"
+            }
+            styledDiv {
+                css {
+                    classes.add("upgrade_button")
+                }
+                attrs {
+                    id = "upgrade_4"
+                }
+                +"UPGRADE"
+            }
+        }
+        styledDiv {
+            css {
                 classes.add("user")
             }
             attrs {
