@@ -66,7 +66,8 @@ body, html {
 }
 
 #resources {
-  background-color: #606;
+  background-image: url("assets/greystone.png");
+  background-repeat: repeat;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -143,7 +144,7 @@ body, html {
 
 #iron {
     scale: 2.5;
-    background-image: url("assets/ore_iron.png");
+    background-image: url("assets/ore_silver.png");
 }
 
 #wood {
@@ -225,7 +226,6 @@ body, html {
     left: 0;
     transition: .3s;
 }
-
 
 .strip.opened {
   transform: translateX(25rem)
