@@ -66,8 +66,7 @@ footer {
     height: calc(100vh - 1.5rem);
     width: 100vw;
     display: grid;
-    grid-template-rows: 4rem 4rem 1fr 4rem 1.5rem;
-    background-color: red;
+    grid-template-rows: 4rem 4rem 1fr 4rem;
 }
 
 #resources {
@@ -164,12 +163,27 @@ footer {
 }
 
 .perks {
-    margin: 2.5rem;
+    margin: 1.25rem 2.5rem;
     display: inline-block;
-    background-color: yellow;
+    background-color: none;
     height: 10rem;
     width: 10rem;
     position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#perk_1 {
+    background-image: url("assets/basics.png");
+}
+#perk_2 {
+    background-image: url("assets/wood.png");
+}
+#perk_3 {
+    background-image: url("assets/fruits.png");
+}
+#perk_4 {
+    background-image: url("assets/fer.png");
 }
 
 .resource {
@@ -302,10 +316,10 @@ footer {
 }
 
 .strip.opened {
-    transform: translateX(25rem)
+    transform: translateX(15rem)
 }
 
-.user {
+#user {
     background-color: beige;
     height: 5vh;
     width: 100%;

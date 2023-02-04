@@ -311,15 +311,6 @@ val MainView = fc<Props> {
                 id = "perk_1"
 
             }
-            styledDiv {
-                css {
-                    classes.add("upgrade_button")
-                }
-                attrs {
-                    id = "upgrade_1"
-                }
-                +"UPGRADE"
-            }
         }
 
         styledDiv {
@@ -328,16 +319,6 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "perk_2"
-
-                styledDiv {
-                    css {
-                        classes.add("upgrade_button")
-                    }
-                    attrs {
-                        id = "upgrade_2"
-                    }
-                    +"UPGRADE"
-                }
             }
         }
         styledDiv {
@@ -345,16 +326,7 @@ val MainView = fc<Props> {
                 classes.add("perks")
             }
             attrs {
-                id = "perk3"
-            }
-            styledDiv {
-                css {
-                    classes.add("upgrade_button")
-                }
-                attrs {
-                    id = "upgrade_3"
-                }
-                +"UPGRADE"
+                id = "perk_3"
             }
         }
         styledDiv {
@@ -362,16 +334,7 @@ val MainView = fc<Props> {
                 classes.add("perks")
             }
             attrs {
-                id = "perk4"
-            }
-            styledDiv {
-                css {
-                    classes.add("upgrade_button")
-                }
-                attrs {
-                    id = "upgrade_4"
-                }
-                +"UPGRADE"
+                id = "perk_4"
             }
         }
         styledDiv {
