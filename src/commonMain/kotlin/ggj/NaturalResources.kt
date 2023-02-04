@@ -1,4 +1,4 @@
 package ggj
 
-class NaturalResources(var trees: Float = 10.0f, var animals: Float = 10.0f) {
+class NaturalResources(var fruits: Float = 20000f, var trees: Float = 10000f, var animals: Float = 1000f) {
 }
