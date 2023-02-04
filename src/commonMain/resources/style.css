@@ -79,6 +79,7 @@ body, html {
 
 #gameview {
   background-color: #006;
+  position: relative;
 }
 
 #items {
@@ -159,4 +160,31 @@ body, html {
     background-color: black;
     height: 2px;
     width: 100%;
+}
+
+#actions-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+#actions {
+    display: flex;
+    gap: 4rem;
+    height: fit-content;
+    margin-bottom: 2rem;
+}
+
+.action {
+    background-color: white;
+    border-radius: 10rem;
+    height: 4rem;
+    aspect-ratio: 1;
+}
+
+.action:hover {
+    cursor: pointer;
 }
