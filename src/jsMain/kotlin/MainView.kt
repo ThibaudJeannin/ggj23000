@@ -347,6 +347,39 @@ val MainView = fc<Props> {
         }
     }
 
+    styledDiv {
+        css {
+            classes.add("subsidebar")
+        }
+        attrs {
+            id = "subsidebar_1"
+        }
+    }
+    styledDiv {
+        css {
+            classes.add("subsidebar")
+        }
+        attrs {
+            id = "subsidebar_2"
+        }
+    }
+    styledDiv {
+        css {
+            classes.add("subsidebar")
+        }
+        attrs {
+            id = "subsidebar_3"
+        }
+    }
+    styledDiv {
+        css {
+            classes.add("subsidebar")
+        }
+        attrs {
+            id = "subsidebar_4"
+        }
+    }
+
     script {
         val js = document.createElement("script")
         js.setAttribute("src", "/mainView.js")
