@@ -1,6 +1,8 @@
 package ggj.dao
 
 import ggj.UserMe
+import ggj.dao.Parcels.references
+import ggj.dao.Parcels.uniqueIndex
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -19,10 +21,12 @@ class UserDao(id: EntityID<Int>) : Entity<Int>(id) {
             return UserDao.new(user.publicUser.userId) {
                 this.name = user.publicUser.userName
                 this.tag = user.userTag
+
             }
         }
     }
 
     internal var name by Users.name
     internal var tag by Users.tag
+
 }

@@ -62,8 +62,14 @@ fetchParcelle = () => {
 }
 
 fetchMe = () => {
-  fetch('/api/users/me', {redirect: 'error'})
-    .then(r => r.json())
+  fetch('/api/users/me')
+    .then(r => {
+      if (r.status !== 200) {
+        window.location.href = '/app/login'
+      }
+
+      return r.json()
+    })
     .catch(e => {
       window.location.href = '/app/login'
     })
