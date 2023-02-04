@@ -3,6 +3,7 @@ import ggj.UserMe
 import ggj.UserSession
 import ggj.dao.UserDao
 import ggj.dao.Users
+import ggj.task.UpdateWorldJob
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
 import io.ktor.server.application.*
@@ -22,23 +23,25 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun Application.module() {
     val env = System.getenv()
-    val host: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
-    val port: String = env.getOrDefault("POSTGRESQL_ADDON_PORT", "5432")
-    val base: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "test_db")
-    val url = "jdbc:postgresql://$host:$port/"
-    val user: String = env.getOrDefault("POSTGRESQL_ADDON_USER", "postgres")
-    val password: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
+    val dbHost: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
+    val dbPort: String = env.getOrDefault("POSTGRESQL_ADDON_PORT", "5432")
+    val dbBase: String = env.getOrDefault("POSTGRESQL_ADDON_DB", "ggj23_db")
+    val dbUrl = "jdbc:postgresql://$dbHost:$dbPort/"
+    val dbUser: String = env.getOrDefault("POSTGRESQL_ADDON_USER", "postgres")
+    val dbPassword: String = env.getOrDefault("POSTGRESQL_ADDON_PASSWORD", "password")
 
-    print("$url, $port, $base, $user, $password")
 
-    setupDatabase(url, base, user, password)
+    print("$dbUrl, $dbPort, $dbBase, $dbUser, $dbPassword")
+//    setupDatabase(dbUrl, dbBase, dbUser, dbPassword)
+    Database.connect("$dbUrl/$dbBase", "org.postgresql.Driver", dbUser, dbPassword)
 
-    Database.connect("$url$base", "org.postgresql.Driver", user, password)
     transaction {
         SchemaUtils.create(Users)
     }
@@ -70,7 +73,7 @@ fun Application.module() {
             validate {
                 transaction {
                     val user = Users.select(Users.id eq it.userId)
-                            .singleOrNull()
+                        .singleOrNull()
                     if (user != null) it else null
                 }
             }
@@ -97,10 +100,10 @@ fun Application.module() {
                     var user: UserMe? = null
                     transaction {
                         user = Users.select(Users.id eq userSession!!.userId)
-                                .map { resultRow ->
-                                    UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
-                                }
-                                .singleOrNull()
+                            .map { resultRow ->
+                                UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
+                            }
+                            .singleOrNull()
                     }
                     if (user == null) {
                         call.respond(HttpStatusCode.NotFound)
@@ -143,10 +146,10 @@ fun Application.module() {
                 var user: UserMe? = null
                 transaction {
                     user = Users.select(Users.tag eq userTag!!)
-                            .map { resultRow ->
-                                UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
-                            }
-                            .singleOrNull()
+                        .map { resultRow ->
+                            UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
+                        }
+                        .singleOrNull()
                 }
                 if (user != null) {
                     call.sessions.set("user_session", UserSession(user?.publicUser!!.userId))
@@ -159,10 +162,16 @@ fun Application.module() {
             }
         }
     }
+
+    Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(
+        UpdateWorldJob()::updateWorld,
+        0, 5, TimeUnit.SECONDS
+    )
 }
 
+
 private fun setupDatabase(url: String, base: String, user: String, password: String) {
-    Database.connect(url, "org.postgresql.Driver", user, password)
+    Database.connect("$url/", "org.postgresql.Driver", user, password)
     try {
         transaction {
             connection.autoCommit = true

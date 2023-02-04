@@ -192,17 +192,26 @@ val MainView = fc<Props> {
                         css {
                             classes.add("action")
                         }
-                    }
-
-                    styledDiv {
-                        css {
-                            classes.add("action")
+                        attrs {
+                            id = "axe"
                         }
                     }
 
                     styledDiv {
                         css {
                             classes.add("action")
+                        }
+                        attrs {
+                            id = "hoe"
+                        }
+                    }
+
+                    styledDiv {
+                        css {
+                            classes.add("action")
+                        }
+                        attrs {
+                            id = "pickaxe"
                         }
                     }
                 }
