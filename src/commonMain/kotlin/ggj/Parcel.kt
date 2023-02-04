@@ -36,6 +36,10 @@ class Parcel() {
 
     fun harvestFruits() {
 
+        if (naturalResources.fruits - 1 < 0) {
+            throw InsufficientNaturalResourcesException("cannot harvest natural resource : insufficient fruits")
+        }
+
         resourceStorage.fruits.addToStorage(harvestFruitValue)
         indicators.bio.evolution -= 0.001f
 
