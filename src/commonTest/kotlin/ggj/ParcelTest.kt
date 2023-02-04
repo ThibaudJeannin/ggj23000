@@ -41,9 +41,7 @@ class ParcelTest {
             parcel.harvestWood()
         }
 
-        print(parcel.items.size / iteration.toFloat())
         assertEquals(0.05, parcel.items.size / iteration.toDouble(), TOLERANCE_D)
-
 
     }
     @Test
