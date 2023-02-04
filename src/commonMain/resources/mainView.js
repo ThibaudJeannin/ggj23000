@@ -5,7 +5,7 @@ document.getElementById('strip_1').addEventListener('click', () => {
 
 
 fetchParcelle = () => {
-  fetch('api/parcelle')
+  fetch('api/parcels/mine')
     .then(r => r.json())
     .then(data => {
       console.log(data)

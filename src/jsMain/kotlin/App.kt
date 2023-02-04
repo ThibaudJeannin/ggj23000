@@ -57,7 +57,7 @@ val app = fc<PropsWithChildren> {
             Route {
                 attrs {
                     path = "/app/home"
-                    element = Greeting.create()
+                    element = MainView.create()
                 }
             }
             Route {
