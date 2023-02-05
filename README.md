@@ -14,7 +14,7 @@ Jouable gratuitement : https://foret3000.cleverapps.io/
 - Installer gradle
 - Installer docker
 - Lancer la base postgres  
-`docker run -it --rm --name test-postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres`
+`docker run -it --name db-ggj23 -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres`
 - Dans Server.kt, décommenté la line `setupDatabase(dbUrl, dbBase, dbUser, dbPassword)`
 - Lancer l'application `./gradlew run` => la base est crée
 - Recommenter la ligne
