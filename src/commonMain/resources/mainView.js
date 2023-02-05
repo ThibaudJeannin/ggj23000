@@ -60,14 +60,14 @@ updateParcelle = (parcelle) => {
 }
 
 displayResourcesNb = (parcelle) => {
-  document.querySelector('#wood > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.wood?.quantity)
-  document.querySelector('#fruits > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.fruits?.quantity)
-  document.querySelector('#iron > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.iron?.quantity)
+  document.querySelector('#wood > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.wood?.quantity, parcelle?.resourceStorage?.wood?.capacity)
+  document.querySelector('#fruits > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.fruits?.quantity, parcelle?.resourceStorage?.fruits?.capacity)
+  document.querySelector('#iron > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.iron?.quantity, parcelle?.resourceStorage?.iron?.capacity)
 }
 
 
-formatResourceNb = (nb) => {
-  return nb != null && nb ? new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 0}).format(nb) : 0
+formatResourceNb = (quantity, capacity) => {
+  return (quantity != null && capacity != 0 && quantity != 0) ? (new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 0}).format(quantity) + " / " + new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 0}).format(capacity)) : 0
 
 }
 
