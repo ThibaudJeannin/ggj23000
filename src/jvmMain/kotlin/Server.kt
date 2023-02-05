@@ -176,7 +176,44 @@ fun Application.module() {
                     }
                     call.respond(res!!)
                 }
+                get("/parcels/{resource}/upgrade/{id}") {
+                    val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
 
+                    val upgradeId = call.parameters["id"]
+                    val resource = call.parameters["resource"]
+
+                    var res: Parcel? = null
+
+                    transaction {
+
+                        var parcel = ParcelDao.find {
+                            Parcels.user eq userSession!!.userId
+                        }.singleOrNull()
+                        var p = parcel?.toParcel()
+
+                        if (resource == "wood") {
+                            res = p?.buyWoodUpgrade(upgradeId)
+                        }
+                        if (resource == "iron") {
+                            res = p?.buyIronUpgrade(upgradeId)
+                        }
+                        if (resource == "fruits") {
+                            res = p?.buyFruitsUpgrade(upgradeId)
+                        }
+
+                        parcel?.applyParcel(p)
+
+                    }
+
+                    call.respond(res!!)
+                }
+
+                get("/parcels/iron/upgrade") {
+
+                }
+                get("/parcels/fruits/upgrade") {
+
+                }
                 get("/parcels/mine/harvest/iron"){
                     val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
 

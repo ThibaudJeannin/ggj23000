@@ -1,6 +1,9 @@
 package ggj.resources
 
-class WoodUpgrade(price: Price, var storage: Int, var production: Int ) : Upgrade(price
-) {
+import kotlinx.serialization.Serializable
+
+
+@Serializable
+class WoodUpgrade(var storage: Int = 1000, var production: Int = 0) {
 
 }

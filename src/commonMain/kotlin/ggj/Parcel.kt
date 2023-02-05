@@ -15,7 +15,12 @@ class Parcel() {
     val indicators = Indicators()
     val naturalResources = NaturalResources()
     val items = ItemsStorage()
-    val upgrades = Upgrades(resourceStorage)
+
+    var woodCurrentUpgrade = WoodUpgrade()
+    var fruitsCurrentUpgrade = FruitsUpgrade()
+    var ironCurrentUpgrade = IronUpgrade()
+    //val fruitsCurrentUpgrade = WoodUpgrade()
+    //val ironCurrentUpgrade = WoodUpgrade()
 
     private var harvestWoodValue = 10.0f
     private var harvestFruitValue = 2.0f
@@ -29,6 +34,40 @@ class Parcel() {
 
     override fun toString():String {
         return "Storage : ${this.resourceStorage} / Indicators : ${this.indicators} / Natural : ${this.naturalResources}"
+    }
+    private fun check(price: Price?): Boolean {
+        if (price != null && this.resourceStorage.iron.quantity > price.iron && this.resourceStorage.wood.quantity > price.wood && this.resourceStorage.fruits.quantity > price.fruits) {
+
+            this.resourceStorage.iron.quantity -= price.iron
+            this.resourceStorage.fruits.quantity -= price.fruits
+            this.resourceStorage.wood.quantity -= price.wood
+
+            return true
+        }
+        return false
+    }
+    fun buyWoodUpgrade(index: String?): Parcel {
+        val price = woodUpgrades[index]?.first
+        if(check(price)) {
+            this.woodCurrentUpgrade = woodUpgrades[index]?.second!!
+        }
+        return this
+    }
+
+    fun buyIronUpgrade(index: String?): Parcel {
+        val price = ironUpgrades[index]?.first
+        if(check(price)) {
+            this.ironCurrentUpgrade = ironUpgrades[index]?.second!!
+        }
+        return this
+    }
+
+    fun buyFruitsUpgrade(index: String?): Parcel {
+        val price = fruitsUpgrades[index]?.first
+        if(check(price)) {
+            this.fruitsCurrentUpgrade = fruitsUpgrades[index]?.second!!
+        }
+        return this
     }
 
     fun produceResources() {
