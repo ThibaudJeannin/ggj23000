@@ -70,9 +70,7 @@ internal object Parcels : IntIdTable() {
 }
 
 class ParcelDao(id: EntityID<Int>) : Entity<Int>(id) {
-    companion object : EntityClass<Int, ParcelDao>(Parcels) {
-
-    }
+    companion object : EntityClass<Int, ParcelDao>(Parcels)
 
     var user by Parcels.user
     var rsWoodQuantity by Parcels.rsWoodQuantity
@@ -97,6 +95,44 @@ class ParcelDao(id: EntityID<Int>) : Entity<Int>(id) {
     var nrFruits by Parcels.nrFruits
     var nrTrees by Parcels.nrTrees
 
+    fun toParcel(): Parcel {
+        var parcel = Parcel();
+        parcel.resourceStorage.wood.quantity = rsWoodQuantity;
+        parcel.resourceStorage.wood.capacity = rsWoodCapacity;
+        parcel.resourceStorage.fruits.quantity = rsFruitsQuantity;
+        parcel.resourceStorage.fruits.capacity = rsFruitsCapacity;
+        parcel.resourceStorage.iron.quantity = rsIronQuantity;
+        parcel.resourceStorage.iron.capacity = rsIronCapacity;
+        parcel.indicators.bio.value = iBioVal;
+        parcel.indicators.bio.evolution = iBioEvo;
+        parcel.indicators.air.value = iAirVal;
+        parcel.indicators.air.evolution = iAirEvo;
+        parcel.indicators.soil.value = iSoilVal;
+        parcel.indicators.soil.evolution = iSoilEvo;
 
+        parcel.naturalResources.iron = nrIron;
+        parcel.naturalResources.fruits = nrFruits;
+        parcel.naturalResources.trees = nrTrees;
+
+        return parcel;
+    }
+    fun applyParcel(parcel: Parcel) {
+        rsWoodQuantity = parcel.resourceStorage.wood.quantity;
+        rsWoodCapacity = parcel.resourceStorage.wood.capacity;
+        rsFruitsQuantity = parcel.resourceStorage.fruits.quantity;
+        rsFruitsCapacity = parcel.resourceStorage.fruits.capacity;
+        rsIronQuantity = parcel.resourceStorage.iron.quantity;
+        rsIronCapacity = parcel.resourceStorage.iron.capacity;
+        iBioVal = parcel.indicators.bio.value;
+        iBioEvo = parcel.indicators.bio.evolution;
+        iAirVal = parcel.indicators.air.value;
+        iAirEvo = parcel.indicators.air.evolution;
+        iSoilVal = parcel.indicators.soil.value;
+        iSoilEvo = parcel.indicators.soil.evolution;
+
+        nrIron = parcel.naturalResources.iron;
+        nrFruits = parcel.naturalResources.fruits;
+        nrTrees = parcel.naturalResources.trees;
+    }
 }
 

@@ -82,19 +82,44 @@ setInterval(fetchParcelle, 5 * 60 * 1000)
 const view = document.getElementById('gameview')
 const trees = []
 const fruits = []
-const iron = []
+const irons = []
 
 updateDisplay = (parcelle) => {
 
   if (parcelle?.naturalResources?.trees) {
+    const treeNb = parcelle.naturalResources?.trees
 
-    while (Math.floor(parcelle.naturalResources?.trees / 100) < trees.length) {
-      removeTree(trees.length - (Math.floor(parcelle.naturalResources?.trees / 100)))
+    while (Math.floor(treeNb / 100) < trees.length) {
+      removeResource(trees, trees.length - (Math.floor(treeNb / 100)))
     }
-    if (Math.floor(parcelle.naturalResources?.trees / 100) > trees.length) {
-      generateTrees((Math.floor(parcelle.naturalResources?.trees / 100)) - trees.length)
+    if (Math.floor(treeNb / 100) > trees.length) {
+      generateTrees((Math.floor(treeNb / 100)) - trees.length)
     }
   }
+
+  if (true || parcelle?.naturalResources?.fruits) {
+    const fruitsNb = 10000 // parcelle.naturalResources?.fruits
+
+    while (Math.floor(fruitsNb / 100) < fruits.length) {
+      removeResource(fruits, fruits.length - (Math.floor(fruitsNb / 100)))
+    }
+    if (Math.floor(fruitsNb / 100) > fruits.length) {
+      generateFruits((Math.floor(fruitsNb / 100)) - fruits.length)
+    }
+  }
+
+  if (true || parcelle?.naturalResources?.iron) {
+    const ironNb = 10000 // parcelle.naturalResources?.iron
+
+    while (Math.floor(ironNb / 100) < irons.length) {
+      removeResource(irons, iron.length - (Math.floor(ironNb / 100)))
+    }
+    if (Math.floor(ironNb / 100) > irons.length) {
+      generateIron((Math.floor(ironNb / 100)) - irons.length)
+    }
+  }
+
+  displaySprites()
 }
 
 generateTrees = (number) => {
@@ -107,28 +132,84 @@ generateTrees = (number) => {
     tree.obj.classList.add('tree')
     tree.obj.src = `/assets/trees/tree${Math.floor(Math.random() * 8)}.png`
 
-    tree.zIndex = Math.floor(Math.random() * 50)
+    const modifier = 300
+    tree.zIndex = Math.floor(Math.random() * modifier)
 
     tree.obj.style.zIndex = tree.zIndex
+    const parallax = 25
+    tree.obj.style.height = 'calc(20vh - ' + (parallax-(tree.zIndex / modifier)*parallax) + 'px)'
 
     tree.obj.style.left = 'calc(' + Math.floor(Math.random() * window.innerWidth) + 'px - 5vh)'
-    tree.obj.style.top = 'calc(65% + ' + tree.zIndex + 'px' + ' - 20vh)'
+    tree.obj.style.bottom = 'calc(35% - ' + (tree.zIndex - modifier/2) + 'px)'
 
     trees[tree.id] = tree
   }
+}
 
-  displaySprites()
+generateFruits = (number) => {
+
+  for (let i = 0; i < number; ++i) {
+    let fruit = {}
+    fruit.id = fruits.length
+    fruit.obj = document.createElement('img')
+    fruit.obj.id = 'fruits' + fruit.id
+    fruit.obj.classList.add('fruits')
+    fruit.obj.src = `/assets/fruits/fruits${Math.floor(Math.random() * 4)}.png`
+
+
+    const modifier = 300
+    fruit.zIndex = Math.floor(Math.random() * modifier)
+
+    fruit.obj.style.zIndex = fruit.zIndex
+    const parallax = 25
+    fruit.obj.style.height = 'calc(5vh - ' + (parallax-(fruit.zIndex / modifier)*parallax) + 'px)'
+
+    fruit.obj.style.left = 'calc(' + Math.floor(Math.random() * window.innerWidth) + 'px - 5vh)'
+    fruit.obj.style.bottom = 'calc(35% - ' + (fruit.zIndex - modifier/2) + 'px)'
+
+    fruits[fruit.id] = fruit
+  }
+}
+
+generateIron = (number) => {
+
+  for (let i = 0; i < number; ++i) {
+    let iron = {}
+    iron.id = irons.length
+    iron.obj = document.createElement('img')
+    iron.obj.id = 'iron' + iron.id
+    iron.obj.classList.add('iron')
+    iron.obj.src = `/assets/iron/iron${Math.floor(Math.random() * 6)}.png`
+
+    const modifier = 300
+    iron.zIndex = Math.floor(Math.random() * modifier)
+
+    iron.obj.style.zIndex = iron.zIndex
+    const parallax = 25
+    iron.obj.style.height = 'calc(6vh - ' + (parallax-(iron.zIndex / modifier)*parallax) + 'px)'
+
+    iron.obj.style.left = 'calc(' + Math.floor(Math.random() * window.innerWidth) + 'px - 5vh)'
+    iron.obj.style.bottom = 'calc(35% - ' + (iron.zIndex - modifier/2)  + 'px)'
+
+    irons[iron.id] = iron
+  }
 }
 
 displaySprites = () => {
   for (let i = 0; i < trees.length; ++i) {
     view.appendChild(trees[i].obj)
   }
+  for (let i = 0; i < fruits.length; ++i) {
+    view.appendChild(fruits[i].obj)
+  }
+  for (let i = 0; i < irons.length; ++i) {
+    view.appendChild(irons[i].obj)
+  }
 }
 
-removeTree = (number) => {
+removeResource = (array, number) => {
   for (let i = 0; i < number; ++i) {
-    view.removeChild(trees[trees.length - 1].obj)
-    trees.pop()
+    view.removeChild(array[array.length - 1].obj)
+    array.pop()
   }
 }
