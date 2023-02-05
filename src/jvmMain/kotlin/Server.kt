@@ -33,6 +33,7 @@ fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun getParcelFromSession(userSession:UserSession?): Parcel? {
     var parcel: Parcel? = null
+
     transaction {
         parcel = Parcels // todo use dao
             .select(
@@ -40,7 +41,7 @@ fun getParcelFromSession(userSession:UserSession?): Parcel? {
             )
             .map { resultRow ->
                 Parcels.mapToObject(resultRow)
-                //UserMe(User(resultRow[Users.id].value, resultRow[Users.name]), resultRow[Users.tag])
+
             }
             .singleOrNull()
 
@@ -144,8 +145,27 @@ fun Application.module() {
 
                 get("/parcels/mine/harvest/wood"){
                     val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
-                    val parcel = getParcelFromSession(userSession)
-                    call.respond(parcel?.harvestWood()!!)
+                    var res: Parcel? = null
+
+                    transaction {
+
+                        var parcels = ParcelDao.find {
+                            Parcels.user eq userSession!!.userId
+                        }
+
+                        for (parcel in parcels) {
+
+                            var p = parcel.toParcel()
+
+                            res = p.harvestWood()
+
+                            parcel.applyParcel(p)
+
+                            print(parcel.toString())
+                        }
+
+                    }
+                    call.respond(res!!)//parcel?.harvestWood()!!)
                 }
 
                 //get("/parcels/mine/harvest/fruits"){
@@ -210,6 +230,7 @@ fun Application.module() {
                     return@post
                 }
                 var user: UserMe? = null
+
                 transaction {
                     user = Users.select(Users.tag eq userTag!!)
                         .map { resultRow ->
