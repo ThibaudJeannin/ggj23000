@@ -407,3 +407,15 @@ footer {
     position: absolute;
     transform-origin: bottom center;
 }
+
+.closeSub {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 0.5rem 0.5rem 0
+}
