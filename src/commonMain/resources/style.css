@@ -84,7 +84,7 @@ footer {
 
 #gameview {
     background: rgb(2,0,36);
-    background: linear-gradient(360deg, rgba(2,0,36,1) 0%, rgba(23,139,21,1) 14%, rgba(30,187,16,1) 35%, rgba(0,212,255,1) 36%, rgba(3,191,229,1) 80%, rgba(17,109,127,1) 100%);
+    background: linear-gradient(360deg, rgba(2,0,36,1) 0%, rgba(23,139,21,1) 14%, rgba(30,187,16,1) 55%, rgba(0,212,255,1) 55.5%, rgba(3,191,229,1) 80%, rgba(17,109,127,1) 100%);
 
     position: relative;
 }
@@ -394,7 +394,16 @@ footer {
 }
 
 .tree {
-    height: 20vh;
     position: absolute;
-    top: 0;
+    transform-origin: bottom center;
+}
+
+.iron {
+    position: absolute;
+    transform-origin: bottom center;
+}
+
+.fruits {
+    position: absolute;
+    transform-origin: bottom center;
 }
