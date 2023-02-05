@@ -25,10 +25,12 @@ class Parcel() {
     private var harvestFruitRate = 1
     private var harvestIronRate = 1
 
-    private var seedLootRate = 105; // in %
+    private var seedLootRate = 15; // in %
+
     override fun toString():String {
-        return "Storage : ${this.resourceStorage.toString()} / Indicators : ${this.indicators.toString()}"
+        return "Storage : ${this.resourceStorage} / Indicators : ${this.indicators} / Natural : ${this.naturalResources}"
     }
+
     fun produceResources() {
         resourceStorage.addProduction(
             Production(

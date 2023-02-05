@@ -45,28 +45,6 @@ internal object Parcels : IntIdTable() {
     val nrFruits = float("nr_fruits")
     val nrTrees = float("nr_trees")
 
-    fun mapToObject(row: ResultRow): Parcel {
-        var p_ = Parcel();
-        p_.resourceStorage.wood.quantity = row[Parcels.rsWoodQuantity];
-        p_.resourceStorage.wood.capacity = row[Parcels.rsWoodCapacity];
-        p_.resourceStorage.fruits.quantity = row[Parcels.rsFruitsQuantity];
-        p_.resourceStorage.fruits.capacity = row[Parcels.rsFruitsCapacity];
-        p_.resourceStorage.iron.quantity = row[Parcels.rsIronQuantity];
-        p_.resourceStorage.iron.capacity = row[Parcels.rsIronCapacity];
-        p_.indicators.bio.value = row[Parcels.iBioVal];
-        p_.indicators.bio.evolution = row[Parcels.iBioEvo];
-        p_.indicators.air.value = row[Parcels.iAirVal];
-        p_.indicators.air.evolution = row[Parcels.iAirEvo];
-        p_.indicators.soil.value = row[Parcels.iSoilVal];
-        p_.indicators.soil.evolution = row[Parcels.iSoilEvo];
-
-        p_.naturalResources.iron = row[Parcels.nrIron];
-        p_.naturalResources.fruits = row[Parcels.nrFruits];
-        p_.naturalResources.trees = row[Parcels.nrTrees];
-
-        return p_;
-    }
-
 }
 
 class ParcelDao(id: EntityID<Int>) : Entity<Int>(id) {
@@ -113,7 +91,7 @@ class ParcelDao(id: EntityID<Int>) : Entity<Int>(id) {
         parcel.naturalResources.iron = nrIron;
         parcel.naturalResources.fruits = nrFruits;
         parcel.naturalResources.trees = nrTrees;
-
+        print("MAIS PUTAIN : ${parcel.naturalResources}\n")
         return parcel;
     }
     fun applyParcel(parcel: Parcel) {
