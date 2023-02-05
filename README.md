@@ -19,10 +19,11 @@ Jouable gratuitement : https://foret3000.cleverapps.io/
 - Lancer l'application `./gradlew run` => la base est crée
 - Recommenter la ligne
 
-## Créateurs
+## Créateur.ices
 
 - Dynamic Team Consultant : https://github.com/BaptisteM-lvd
 - Corporate Response Architect : https://github.com/BrunoFL
 - Lead Functionality Liason : https://github.com/Chrisdu25
 - Chief Optimization Facilitator : https://github.com/ThibaudJeannin
+- Tooltip operation facilitator : https://github.com/MarieSmo
 - Global Web Engineer : Yohann
