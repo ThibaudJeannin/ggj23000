@@ -4,10 +4,7 @@ import kotlinx.html.FormMethod
 import kotlinx.html.InputType
 import kotlinx.html.hidden
 import react.Props
-import react.dom.attrs
-import react.dom.form
-import react.dom.h1
-import react.dom.h3
+import react.dom.*
 import react.fc
 import react.useEffectOnce
 import styled.css
@@ -37,7 +34,7 @@ val LoginForm = fc<Props> {
         }
 
         h3 {
-            +"Jeu de gestion de forêt. Obtenez la racine magique pour sauver la planète. Mais attention, chaque action a des conséquences sur votre foret !"
+            +"Jeu de gestion de forêt. Obtenez la racine magique pour sauver la planète.<br/>Mais attention, chaque action a des conséquences sur votre foret !"
         }
 
         styledDiv {

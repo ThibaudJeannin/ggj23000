@@ -48,7 +48,7 @@ fetchMe = () => {
 
       const name = data?.publicUser?.userName
       const tag = data?.userTag
-      document.getElementById('user-greetings').innerText = `Bonjour ${name} (Utilise ${tag} pour te reconnecter)` // todo yohann fait mieux
+      document.getElementById('user-greetings').innerHTML = `Bonjour ${name} (Utilise ${tag} pour te reconnecter) ` + document.getElementById('user-greetings').innerHTML // todo yohann fait mieux
     })
 }
 
