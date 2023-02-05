@@ -46,7 +46,7 @@ class Parcel() {
             throw InsufficientNaturalResourcesException("cannot harvest natural resource : insufficient wood")
         }
 
-        naturalResources.trees--
+        naturalResources.trees -= harvestWoodRate
         resourceStorage.wood.addToStorage(harvestWoodValue)
 
         indicators.bio.value -= constants.wood.BIO_MODIFYER
@@ -71,6 +71,7 @@ class Parcel() {
             throw InsufficientNaturalResourcesException("cannot harvest natural resource : insufficient fruits")
         }
 
+        naturalResources.fruits -= harvestFruitRate;
         resourceStorage.fruits.addToStorage(harvestFruitValue)
 
         indicators.bio.value -= constants.fruits.BIO_MODIFYER
@@ -95,6 +96,7 @@ class Parcel() {
             throw InsufficientNaturalResourcesException("cannot harvest natural resource : insufficient iron")
         }
 
+        naturalResources.iron -= harvestIronRate;
 
         indicators.bio.value -= constants.iron.BIO_MODIFYER
         indicators.bio.evolution -= constants.iron.BIO_EVO_MODIFYER

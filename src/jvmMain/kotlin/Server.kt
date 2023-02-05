@@ -142,24 +142,19 @@ fun Application.module() {
 
                     transaction {
 
-                        var parcels = ParcelDao.find {
+                        var parcel = ParcelDao.find {
                             Parcels.user eq userSession!!.userId
-                        }
+                        }.singleOrNull()
 
-                        for (parcel in parcels) {
+                        var p = parcel?.toParcel()
 
-                            var p = parcel.toParcel()
+                        res = p?.harvestWood()
 
-                            res = p.harvestWood()
-
-                            parcel.applyParcel(p)
-
-                            print("la parcel wsh ${parcel}\n")
-                        }
+                        parcel?.applyParcel(p)
 
                     }
-                    //print("alo ? ${res.naturalResources}\n")
-                    call.respond(res!!)//parcel?.harvestWood()!!)
+
+                    call.respond(res!!)
                 }
 
                 get("/parcels/mine/harvest/fruits"){
@@ -168,20 +163,14 @@ fun Application.module() {
 
                     transaction {
 
-                        var parcels = ParcelDao.find {
+                        var parcel = ParcelDao.find {
                             Parcels.user eq userSession!!.userId
-                        }
+                        }.singleOrNull()
 
-                        for (parcel in parcels) {
+                        var p = parcel?.toParcel()
 
-                            var p = parcel.toParcel()
-
-                            res = p.harvestFruits()
-
-                            parcel.applyParcel(p)
-
-                            print(parcel.toString())
-                        }
+                        res = p?.harvestFruits()
+                        parcel?.applyParcel(p)
 
                     }
                     call.respond(res!!)
@@ -189,27 +178,23 @@ fun Application.module() {
 
                 get("/parcels/mine/harvest/iron"){
                     val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
+
                     var res: Parcel? = null
 
                     transaction {
 
-                        var parcels = ParcelDao.find {
+                        var parcel = ParcelDao.find {
                             Parcels.user eq userSession!!.userId
-                        }
+                        }.singleOrNull()
 
+                        var p = parcel?.toParcel()
 
-                        for (parcel in parcels) {
+                        res = p?.harvestIron()
 
-                            var p = parcel.toParcel()
-
-                            res = p.harvestIron()
-
-                            parcel.applyParcel(p)
-
-                            print(parcel.toString())
-                        }
+                        parcel?.applyParcel(p)
 
                     }
+
                     call.respond(res!!)
                 }
             }
