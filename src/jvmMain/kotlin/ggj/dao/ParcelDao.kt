@@ -12,14 +12,6 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.ResultRow
 
-val resourceStorage = ResourceStorage()
-val indicators = Indicators()
-val naturalResources = NaturalResources()
-val items = mutableListOf<Item>()
-val upgrades = Upgrades(resourceStorage)
-
-
-
 internal object Parcels : IntIdTable() {
     val user = integer("user_id").uniqueIndex().references(Users.id)
 
