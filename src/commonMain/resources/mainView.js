@@ -52,7 +52,6 @@ fetchMe = () => {
     })
 }
 
-
 updateParcelle = (parcelle) => {
   console.log(parcelle)
   displayResourcesNb(parcelle)
@@ -74,7 +73,7 @@ formatResourceNb = (nb) => {
 
 fetchMe()
 
-setInterval(fetchParcelle, 5 * 60 * 1000)
+setInterval(fetchParcelle, 5000)
 
 
 // GAME VIEW
