@@ -1,10 +1,7 @@
 import browser.document
 import kotlinx.html.id
 import react.Props
-import react.dom.attrs
-import react.dom.div
-import react.dom.onClick
-import react.dom.script
+import react.dom.*
 import react.fc
 import styled.css
 import styled.styledDiv
@@ -371,6 +368,17 @@ val MainView = fc<Props> {
             }
             attrs {
                 id = "user"
+            }
+            styledDiv {
+                attrs {
+                    id ="user-greetings"
+                }
+            }
+            a {
+                attrs {
+                    href = "/sign-out"
+                }
+                +"Se déconnecter"
             }
         }
     }

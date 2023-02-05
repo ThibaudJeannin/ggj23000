@@ -1,12 +1,12 @@
 import ggj.Parcel
-import ggj.users.User
-import ggj.users.UserMe
 import ggj.UserSession
 import ggj.dao.ParcelDao
 import ggj.dao.Parcels
 import ggj.dao.UserDao
 import ggj.dao.Users
 import ggj.task.UpdateWorldJob
+import ggj.users.User
+import ggj.users.UserMe
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
 import io.ktor.server.application.*
@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
-fun getParcelFromSession(userSession:UserSession?): Parcel? {
+fun getParcelFromSession(userSession: UserSession?): Parcel? {
     var parcel: Parcel? = null
     transaction {
         parcel = Parcels // todo use dao
@@ -47,6 +47,7 @@ fun getParcelFromSession(userSession:UserSession?): Parcel? {
     }
     return parcel
 }
+
 fun Application.module() {
     val env = System.getenv()
     val dbHost: String = env.getOrDefault("POSTGRESQL_ADDON_HOST", "localhost")
@@ -142,7 +143,7 @@ fun Application.module() {
                     call.respond(parcel!!)
                 }
 
-                get("/parcels/mine/harvest/wood"){
+                get("/parcels/mine/harvest/wood") {
                     val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
                     val parcel = getParcelFromSession(userSession)
                     call.respond(parcel?.harvestWood()!!)
@@ -225,6 +226,12 @@ fun Application.module() {
                     call.application.environment.log.info("User not found")
                     call.respondRedirect("/app/login")
                 }
+            }
+        }
+        route("/sign-out") {
+            get {
+                call.sessions.set("user_session", UserSession(-1))
+                call.respondRedirect("/app/login")
             }
         }
     }
