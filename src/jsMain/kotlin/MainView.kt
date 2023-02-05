@@ -318,6 +318,13 @@ val MainView = fc<Props> {
                     document.getElementById("subsidebar_4")?.classList?.remove("opened")
                 }
             }
+            img {
+                attrs {
+                    id = "perks_1"
+                    src = "../../assets/perks/basics.png"
+                }
+            }
+            + "Commun"
         }
 
         styledDiv {
@@ -325,7 +332,6 @@ val MainView = fc<Props> {
                 classes.add("perks")
             }
             attrs {
-                id = "perk_2"
                 onClick = {
                     document.getElementById("subsidebar_2")?.classList?.toggle("opened")
                     document.getElementById("subsidebar_1")?.classList?.remove("opened")
@@ -333,13 +339,19 @@ val MainView = fc<Props> {
                     document.getElementById("subsidebar_4")?.classList?.remove("opened")
                 }
             }
+            img {
+                attrs {
+                    id = "perks_2"
+                    src = "../../assets/perks/wood.png"
+                }
+            }
+            + "Bois"
         }
         styledDiv {
             css {
                 classes.add("perks")
             }
             attrs {
-                id = "perk_3"
                 onClick = {
                     document.getElementById("subsidebar_3")?.classList?.toggle("opened")
                     document.getElementById("subsidebar_1")?.classList?.remove("opened")
@@ -347,13 +359,19 @@ val MainView = fc<Props> {
                     document.getElementById("subsidebar_4")?.classList?.remove("opened")
                 }
             }
+            img {
+                attrs {
+                    id = "perks_3"
+                    src = "../../assets/perks/fruits.png"
+                }
+            }
+            + "Fruits"
         }
         styledDiv {
             css {
                 classes.add("perks")
             }
             attrs {
-                id = "perk_4"
                 onClick = {
                     document.getElementById("subsidebar_4")?.classList?.toggle("opened")
                     document.getElementById("subsidebar_1")?.classList?.remove("opened")
@@ -361,6 +379,13 @@ val MainView = fc<Props> {
                     document.getElementById("subsidebar_3")?.classList?.remove("opened")
                 }
             }
+            img {
+                attrs {
+                    id = "perks_4"
+                    src = "../../assets/perks/fer.png"
+                }
+            }
+            + "Fer"
         }
         styledDiv {
             css {
@@ -432,8 +457,11 @@ val MainView = fc<Props> {
             css {
                 classes.add("perks")
             }
-            attrs {
-                id = "cabane_1"
+            img {
+                attrs {
+                    id = "cabane_1"
+                    src = "../../assets/perks/mill_storage.png"
+                }
             }
             +"Niveau 0"
         }
@@ -441,8 +469,11 @@ val MainView = fc<Props> {
             css {
                 classes.add("perks")
             }
-            attrs {
-                id = "timber_1"
+            img {
+                attrs {
+                    id = "timber_1"
+                    src = "../../assets/perks/mill_cutter.png"
+                }
             }
             +"Niveau 0"
         }
@@ -450,8 +481,11 @@ val MainView = fc<Props> {
             css {
                 classes.add("perks")
             }
-            attrs {
-                id = "forest_1"
+            img {
+                attrs {
+                    id = "forest_1"
+                    src = "../../assets/perks/mill_crane.png"
+                }
             }
             +"Niveau 0"
         }
@@ -459,8 +493,11 @@ val MainView = fc<Props> {
             css {
                 classes.add("perks")
             }
-            attrs {
-                id = "fred_1"
+            img {
+                attrs {
+                    id = "fred_1"
+                    src = "../../assets/perks/mill_warehouse.png"
+                }
             }
             +"Niveau 0"
         }
@@ -491,10 +528,13 @@ val MainView = fc<Props> {
             css {
                 classes.add("perks")
             }
-            attrs {
-                id = "hangar_1"
+            img {
+                attrs {
+                    id = "hangar_1"
+                    src = "../../assets/perks/mill_stoneWarehouse.png"
+                }
             }
-            +"Niveau 0"
+            +"Niveau 1"
         }
     }
     styledDiv {
@@ -523,8 +563,11 @@ val MainView = fc<Props> {
             css {
                 classes.add("perks")
             }
-            attrs {
-                id = "mine_1"
+            img {
+                attrs {
+                    id = "mine_1"
+                    src = "../../assets/perks/medieval_mine.png"
+                }
             }
             +"Niveau 0"
         }
@@ -533,8 +576,11 @@ val MainView = fc<Props> {
             css {
                 classes.add("perks")
             }
-            attrs {
-                id = "warehouse_1"
+            img {
+                attrs {
+                    id = "warehouse_1"
+                    src = "../../assets/perks/medieval_archery.png"
+                }
             }
             +"Niveau 0"
         }
