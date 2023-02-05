@@ -34,7 +34,9 @@ val LoginForm = fc<Props> {
         }
 
         h3 {
-            +"Jeu de gestion de forêt. Obtenez la racine magique pour sauver la planète.<br/>Mais attention, chaque action a des conséquences sur votre foret !"
+            +"Jeu de gestion de forêt. Obtenez la racine magique pour sauver la planète. "
+            br {}
+            +"Mais attention, chaque action a des conséquences sur votre foret !"
         }
 
         styledDiv {

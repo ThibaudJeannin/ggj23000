@@ -309,7 +309,7 @@ footer {
 }
 
 .strip.opened {
-    transform: translateX(50vw) translateY(-50%);
+    transform: translateX(50vw) translateY(-50%) rotate(180deg);
 }
 
 #user {
@@ -338,7 +338,7 @@ footer {
     -ms-overflow-style: none;
     scrollbar-width: none;
     z-index: 1000;
-    background-color: rgba(128, 128, 128, .9);
+    background-color: rgba(90, 90, 90, .9);
 
 }
 
@@ -376,4 +376,37 @@ footer {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 0 0.5rem 0.5rem 0
+}
+
+#hoe .toolTipTxt {
+  visibility: hidden;
+  width: auto;
+  background-color: rgba(90, 90, 90, .9);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 15%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#hoe .toolTipTxt::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(90, 90, 90, .9) transparent transparent transparent;
+}
+
+#hoe:hover .toolTipTxt {
+  visibility: visible;
+  opacity: 1;
 }
