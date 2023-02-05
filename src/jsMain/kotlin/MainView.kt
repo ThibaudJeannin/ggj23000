@@ -217,6 +217,8 @@ val MainView = fc<Props> {
                         }
                         attrs {
                             id = "pickaxe"
+                            title = "Cling clang plus de cailloux"
+
                         }
                     }
                 }
