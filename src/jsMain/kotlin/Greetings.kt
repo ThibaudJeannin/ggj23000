@@ -1,8 +1,7 @@
-import ggj.User
-import ggj.UserMe
+import ggj.users.User
+import ggj.users.UserMe
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import kotlinx.browser.window
 import kotlinx.coroutines.launch
 import react.Props
 import react.dom.a

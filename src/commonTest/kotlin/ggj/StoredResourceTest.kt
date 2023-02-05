@@ -1,5 +1,6 @@
 package ggj
 
+import ggj.resources.StoredResource
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

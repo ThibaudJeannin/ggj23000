@@ -372,10 +372,25 @@ footer {
 }
 
 #mine_1 {
-    background-image: url("assets/basics.png");
+    background-image: url("assets/medieval_mine.png");
 }
 #warehouse_1 {
-    background-image: url("assets/wood.png");
+    background-image: url("assets/medieval_archery.png");
+}
+#hangar_1 {
+    background-image: url("assets/mill_stoneWarehouse.png");
+}
+#cabane_1 {
+    background-image: url("assets/mill_storage.png");
+}
+#timber_1 {
+    background-image: url("assets/timber.png");
+}
+#forest_1 {
+    background-image: url("assets/mill_crane.png");
+}
+#fred_1 {
+    background-image: url("assets/grenier.png");
 }
 
 .tree {

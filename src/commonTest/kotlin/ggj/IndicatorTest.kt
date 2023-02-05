@@ -1,5 +1,6 @@
 package ggj
 
+import ggj.indicators.Indicator
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

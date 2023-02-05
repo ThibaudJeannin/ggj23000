@@ -1,5 +1,9 @@
 package ggj
 
+import ggj.indicators.Indicators
+import ggj.items.ItemsStorage
+import ggj.items.Seed
+import ggj.resources.*
 import kotlinx.serialization.Serializable
 import kotlin.math.abs
 import kotlin.random.Random
@@ -10,7 +14,7 @@ class Parcel() {
     val resourceStorage = ResourceStorage()
     val indicators = Indicators()
     val naturalResources = NaturalResources()
-    val items = mutableListOf<Item>()
+    val items = ItemsStorage()
     val upgrades = Upgrades(resourceStorage)
 
     private var harvestWoodValue = 10.0f
@@ -21,10 +25,16 @@ class Parcel() {
     private var harvestFruitRate = 1
     private var harvestIronRate = 1
 
-    private var seedLootRate = 5; // in %
+    private var seedLootRate = 105; // in %
 
     fun produceResources() {
-        resourceStorage.addProduction(Production(constants.wood.PRODUCTION, constants.fruits.PRODUCTION, constants.iron.PRODUCTION))
+        resourceStorage.addProduction(
+            Production(
+                constants.wood.PRODUCTION,
+                constants.fruits.PRODUCTION,
+                constants.iron.PRODUCTION
+            )
+        )
     }
 
     fun harvestWood(): Parcel {
@@ -45,7 +55,7 @@ class Parcel() {
         indicators.soil.value -= constants.wood.SOIL_MODIFYER
 
         if (abs(Random.nextInt()) % 100 < seedLootRate) {
-            this.items.add(Seed())
+            this.items.seeds.add(Seed())
         }
 
         return this
@@ -69,7 +79,7 @@ class Parcel() {
         indicators.soil.value -= constants.fruits.SOIL_MODIFYER
 
         if (abs(Random.nextInt()) % 100 < (seedLootRate * 2)) {
-            this.items.add(Seed())
+            this.items.seeds.add(Seed())
         }
 
         return this

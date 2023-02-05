@@ -1,13 +1,10 @@
 package ggj.dao
 
-import ggj.UserMe
-import ggj.dao.Parcels.references
-import ggj.dao.Parcels.uniqueIndex
+import ggj.users.UserMe
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.ResultRow
 
 internal object Users : IntIdTable() {
     val name = varchar("name", 50)
