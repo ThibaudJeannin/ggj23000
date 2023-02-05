@@ -54,6 +54,7 @@ fun Application.module() {
         register(ContentType.Application.Json, KotlinxSerializationConverter(Json {
             prettyPrint = true
             ignoreUnknownKeys = true
+            encodeDefaults = true
         }))
     }
 
