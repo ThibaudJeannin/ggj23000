@@ -217,8 +217,15 @@ val MainView = fc<Props> {
                         }
                         attrs {
                             id = "pickaxe"
-                            title = "Cling clang plus de cailloux"
 
+                        }
+                        styledSpan {
+                            css {
+                                classes.add("toolTipTxt")
+                            }
+                            p {
+                                + "Cling clang plus de cailloux"
+                            }
                         }
                     }
                 }
