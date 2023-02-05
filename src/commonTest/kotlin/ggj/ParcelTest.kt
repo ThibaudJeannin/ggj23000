@@ -97,7 +97,7 @@ class ParcelTest {
             parcel.harvestWood()
         }
 
-        assertEquals(0.05, parcel.items.size / iteration.toDouble(), TOLERANCE_SEED)
+        assertEquals(0.15, parcel.items.seeds.size / iteration.toDouble(), TOLERANCE_SEED)
 
     }
 
@@ -111,7 +111,7 @@ class ParcelTest {
             parcel.harvestFruits()
         }
 
-        assertEquals(0.10, parcel.items.size / iteration.toDouble(), TOLERANCE_SEED)
+        assertEquals(0.30, parcel.items.seeds.size / iteration.toDouble(), TOLERANCE_SEED)
 
     }
 
