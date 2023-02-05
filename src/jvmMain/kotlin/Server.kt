@@ -54,6 +54,7 @@ fun Application.module() {
         register(ContentType.Application.Json, KotlinxSerializationConverter(Json {
             prettyPrint = true
             ignoreUnknownKeys = true
+            encodeDefaults = true
         }))
     }
 
@@ -268,7 +269,7 @@ fun Application.module() {
 
     Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(
         UpdateWorldJob()::updateWorld,
-        0, 5, TimeUnit.SECONDS
+        5, 5, TimeUnit.SECONDS
     )
 }
 

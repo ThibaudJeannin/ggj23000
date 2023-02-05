@@ -48,7 +48,7 @@ fetchMe = () => {
 
       const name = data?.publicUser?.userName
       const tag = data?.userTag
-      document.getElementById('user-greetings').innerText = `Bonjour ${name} (Utilise ${tag} pour te reconnecter)` // todo yohann fait mieux
+      document.getElementById('user-greetings').innerHTML = `Bonjour ${name} (Utilise ${tag} pour te reconnecter) ` + document.getElementById('user-greetings').innerHTML // todo yohann fait mieux
     })
 }
 
@@ -89,33 +89,33 @@ updateDisplay = (parcelle) => {
   if (parcelle?.naturalResources?.trees) {
     const treeNb = parcelle.naturalResources?.trees
 
-    while (Math.floor(treeNb / 100) < trees.length) {
-      removeResource(trees, trees.length - (Math.floor(treeNb / 100)))
+    while (Math.ceil(treeNb / 100) < trees.length) {
+      removeResource(trees, trees.length - (Math.ceil(treeNb / 100)))
     }
-    if (Math.floor(treeNb / 100) > trees.length) {
-      generateTrees((Math.floor(treeNb / 100)) - trees.length)
-    }
-  }
-
-  if (true || parcelle?.naturalResources?.fruits) {
-    const fruitsNb = 10000 // parcelle.naturalResources?.fruits
-
-    while (Math.floor(fruitsNb / 100) < fruits.length) {
-      removeResource(fruits, fruits.length - (Math.floor(fruitsNb / 100)))
-    }
-    if (Math.floor(fruitsNb / 100) > fruits.length) {
-      generateFruits((Math.floor(fruitsNb / 100)) - fruits.length)
+    if (Math.ceil(treeNb / 100) > trees.length) {
+      generateTrees(Math.ceil(treeNb / 100) - trees.length)
     }
   }
 
-  if (true || parcelle?.naturalResources?.iron) {
-    const ironNb = 10000 // parcelle.naturalResources?.iron
+  if (parcelle?.naturalResources?.fruits) {
+    const fruitsNb = parcelle.naturalResources?.fruits
 
-    while (Math.floor(ironNb / 100) < irons.length) {
-      removeResource(irons, iron.length - (Math.floor(ironNb / 100)))
+    while (Math.ceil(fruitsNb / 100) < fruits.length) {
+      removeResource(fruits, fruits.length - (Math.ceil(fruitsNb / 100)))
     }
-    if (Math.floor(ironNb / 100) > irons.length) {
-      generateIron((Math.floor(ironNb / 100)) - irons.length)
+    if (Math.ceil(fruitsNb / 100) > fruits.length) {
+      generateFruits(Math.ceil(fruitsNb / 100) - fruits.length)
+    }
+  }
+
+  if (parcelle?.naturalResources?.iron) {
+    const ironNb = parcelle.naturalResources?.iron
+
+    while (Math.ceil(ironNb / 100) < irons.length) {
+      removeResource(irons, irons.length - (Math.ceil(ironNb / 100)))
+    }
+    if (Math.ceil(ironNb / 100) > irons.length) {
+      generateIron(Math.ceil(ironNb / 100) - irons.length)
     }
   }
 
