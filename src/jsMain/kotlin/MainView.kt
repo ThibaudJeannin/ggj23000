@@ -7,6 +7,7 @@ import react.fc
 import styled.css
 import styled.styledDiv
 import styled.styledP
+import styled.styledSpan
 
 val MainView = fc<Props> {
 
@@ -199,6 +200,14 @@ val MainView = fc<Props> {
                         }
                         attrs {
                             id = "hoe"
+                        }
+                        styledSpan {
+                            css {
+                                classes.add("toolTipTxt")
+                            }
+                            p {
+                                + "Récoltes des fruits !"
+                            }
                         }
                     }
 
