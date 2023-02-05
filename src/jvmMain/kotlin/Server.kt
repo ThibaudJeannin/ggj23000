@@ -168,12 +168,55 @@ fun Application.module() {
                     call.respond(res!!)//parcel?.harvestWood()!!)
                 }
 
-                //get("/parcels/mine/harvest/fruits"){
-                //    call.respond(parcel.harvestFruits())
-                //}
-                //get("/parcels/mine/harvest/iron"){
-                //    call.respond(parcel.harvestIron())
-                ///}
+                get("/parcels/mine/harvest/fruits"){
+                    val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
+                    var res: Parcel? = null
+
+                    transaction {
+
+                        var parcels = ParcelDao.find {
+                            Parcels.user eq userSession!!.userId
+                        }
+
+                        for (parcel in parcels) {
+
+                            var p = parcel.toParcel()
+
+                            res = p.harvestFruits()
+
+                            parcel.applyParcel(p)
+
+                            print(parcel.toString())
+                        }
+
+                    }
+                    call.respond(res!!)
+                }
+
+                get("/parcels/mine/harvest/iron"){
+                    val userSession: UserSession? = call.sessions.get("user_session") as UserSession?
+                    var res: Parcel? = null
+
+                    transaction {
+
+                        var parcels = ParcelDao.find {
+                            Parcels.user eq userSession!!.userId
+                        }
+
+                        for (parcel in parcels) {
+
+                            var p = parcel.toParcel()
+
+                            res = p.harvestIron()
+
+                            parcel.applyParcel(p)
+
+                            print(parcel.toString())
+                        }
+
+                    }
+                    call.respond(res!!)
+                }
             }
         }
         route("/sign-up") {
