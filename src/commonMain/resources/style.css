@@ -309,7 +309,7 @@ footer {
 }
 
 .strip.opened {
-    transform: translateX(50vw) translateY(-50%);
+    transform: translateX(50vw) translateY(-50%) rotate(180deg);
 }
 
 #user {

@@ -451,6 +451,23 @@ val MainView = fc<Props> {
             }
             + "X"
         }
+        styledDiv {
+            css {
+                classes.add("perks")
+            }
+            img {
+                attrs {
+                    id = "seed_1"
+                    src = "../../assets/perks/seed.png"
+                }
+            }
+            styledP {
+                css {
+                    classes.add("subSideBarTxt")
+                }
+                + "Racine Magique !"
+            }
+        }
     }
     styledDiv {
         css {
