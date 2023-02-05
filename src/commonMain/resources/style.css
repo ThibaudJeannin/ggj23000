@@ -403,7 +403,7 @@ footer {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: black transparent transparent transparent;
+  border-color: rgba(90, 90, 90, .9) transparent transparent transparent;
 }
 
 #hoe:hover .toolTipTxt {
