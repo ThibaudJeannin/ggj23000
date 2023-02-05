@@ -5,6 +5,7 @@ import react.dom.*
 import react.fc
 import styled.css
 import styled.styledDiv
+import styled.styledP
 
 val MainView = fc<Props> {
 
@@ -324,7 +325,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/basics.png"
                 }
             }
-            + "Commun"
+            styledP {
+                css {
+                    classes.add("sideBarTxt")
+                }
+                + "Commun"
+            }
         }
 
         styledDiv {
@@ -345,7 +351,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/wood.png"
                 }
             }
-            + "Bois"
+            styledP {
+                css {
+                    classes.add("sideBarTxt")
+                }
+                + "Bois"
+            }
         }
         styledDiv {
             css {
@@ -365,7 +376,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/fruits.png"
                 }
             }
-            + "Fruits"
+            styledP {
+                css {
+                    classes.add("sideBarTxt")
+                }
+                + "Fruits"
+            }
         }
         styledDiv {
             css {
@@ -385,7 +401,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/fer.png"
                 }
             }
-            + "Fer"
+            styledP {
+                css {
+                    classes.add("sideBarTxt")
+                }
+                + "Fer"
+            }
         }
         styledDiv {
             css {
@@ -398,12 +419,12 @@ val MainView = fc<Props> {
                 attrs {
                     id ="user-greetings"
                 }
-            }
-            a {
-                attrs {
-                    href = "/sign-out"
+                a {
+                    attrs {
+                        href = "/sign-out"
+                    }
+                    +"Se déconnecter"
                 }
-                +"Se déconnecter"
             }
         }
     }
@@ -463,7 +484,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/mill_storage.png"
                 }
             }
-            +"Niveau 0"
+            styledP {
+                css {
+                    classes.add("subSideBarTxt")
+                }
+                + "Cabane Niveau 0"
+            }
         }
         styledDiv {
             css {
@@ -475,7 +501,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/mill_cutter.png"
                 }
             }
-            +"Niveau 0"
+            styledP {
+                css {
+                    classes.add("subSideBarTxt")
+                }
+                + "Bûcherons Niveau 0"
+            }
         }
         styledDiv {
             css {
@@ -487,7 +518,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/mill_crane.png"
                 }
             }
-            +"Niveau 0"
+            styledP {
+                css {
+                    classes.add("subSideBarTxt")
+                }
+                + "Forestier Niveau 0"
+            }
         }
         styledDiv {
             css {
@@ -499,7 +535,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/mill_warehouse.png"
                 }
             }
-            +"Niveau 0"
+            styledP {
+                css {
+                    classes.add("subSideBarTxt")
+                }
+                + "Fred Grainier Niveau 0"
+            }
         }
     }
     styledDiv {
@@ -534,7 +575,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/mill_stoneWarehouse.png"
                 }
             }
-            +"Niveau 1"
+            styledP {
+                css {
+                    classes.add("subSideBarTxt")
+                }
+                + "Hangar Niveau 0"
+            }
         }
     }
     styledDiv {
@@ -569,7 +615,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/medieval_mine.png"
                 }
             }
-            +"Niveau 0"
+            styledP {
+                css {
+                    classes.add("subSideBarTxt")
+                }
+                + "Mine Niveau 0"
+            }
         }
 
         styledDiv {
@@ -582,7 +633,12 @@ val MainView = fc<Props> {
                     src = "../../assets/perks/medieval_archery.png"
                 }
             }
-            +"Niveau 0"
+            styledP {
+                css {
+                    classes.add("subSideBarTxt")
+                }
+                + "Entrepôt Niveau 0"
+            }
         }
     }
 
