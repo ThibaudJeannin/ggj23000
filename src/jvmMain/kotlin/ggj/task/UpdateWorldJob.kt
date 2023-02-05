@@ -1,10 +1,18 @@
 package ggj.task
 
-import java.time.ZonedDateTime
+import ggj.dao.ParcelDao
+import org.jetbrains.exposed.sql.transactions.transaction
 
 class UpdateWorldJob {
 
     fun updateWorld() {
-        Thread.sleep(1000L)
+        transaction {
+            ParcelDao.all().forEach {
+                println("$it")
+                val parcel = it.toParcel()
+                parcel.produceResources()
+                it.applyParcel(parcel)
+            }
+        }
     }
 }
