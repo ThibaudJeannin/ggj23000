@@ -390,6 +390,21 @@ val MainView = fc<Props> {
         attrs {
             id = "subsidebar_1"
         }
+        styledDiv {
+            css {
+                classes.add("closeSub")
+            }
+            attrs {
+                id = "close_1"
+                onClick = {
+                    document.getElementById("subsidebar_4")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_1")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_2")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_3")?.classList?.remove("opened")
+                }
+            }
+            + "X"
+        }
     }
     styledDiv {
         css {
@@ -397,6 +412,21 @@ val MainView = fc<Props> {
         }
         attrs {
             id = "subsidebar_2"
+        }
+        styledDiv {
+            css {
+                classes.add("closeSub")
+            }
+            attrs {
+                id = "close_2"
+                onClick = {
+                    document.getElementById("subsidebar_4")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_1")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_2")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_3")?.classList?.remove("opened")
+                }
+            }
+            + "X"
         }
         styledDiv {
             css {
@@ -444,6 +474,21 @@ val MainView = fc<Props> {
         }
         styledDiv {
             css {
+                classes.add("closeSub")
+            }
+            attrs {
+                id = "close_3"
+                onClick = {
+                    document.getElementById("subsidebar_4")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_1")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_2")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_3")?.classList?.remove("opened")
+                }
+            }
+            + "X"
+        }
+        styledDiv {
+            css {
                 classes.add("perks")
             }
             attrs {
@@ -458,6 +503,21 @@ val MainView = fc<Props> {
         }
         attrs {
             id = "subsidebar_4"
+        }
+        styledDiv {
+            css {
+                classes.add("closeSub")
+            }
+            attrs {
+                id = "close_4"
+                onClick = {
+                    document.getElementById("subsidebar_4")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_1")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_2")?.classList?.remove("opened")
+                    document.getElementById("subsidebar_3")?.classList?.remove("opened")
+                }
+            }
+            + "X"
         }
         styledDiv {
             css {
