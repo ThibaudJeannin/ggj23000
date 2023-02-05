@@ -1,11 +1,13 @@
 import browser.document
 import kotlinx.html.id
+import kotlinx.html.title
 import react.Props
 import react.dom.*
 import react.fc
 import styled.css
 import styled.styledDiv
 import styled.styledP
+import styled.styledSpan
 
 val MainView = fc<Props> {
 
@@ -188,6 +190,7 @@ val MainView = fc<Props> {
                         }
                         attrs {
                             id = "axe"
+                            title = "Abattre un arbre"
                         }
                     }
 
@@ -197,6 +200,14 @@ val MainView = fc<Props> {
                         }
                         attrs {
                             id = "hoe"
+                        }
+                        styledSpan {
+                            css {
+                                classes.add("toolTipTxt")
+                            }
+                            p {
+                                + "Récoltes des fruits !"
+                            }
                         }
                     }
 
@@ -329,7 +340,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("sideBarTxt")
                 }
-                + "Commun"
+                +"Commun"
             }
         }
 
@@ -355,7 +366,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("sideBarTxt")
                 }
-                + "Bois"
+                +"Bois"
             }
         }
         styledDiv {
@@ -380,7 +391,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("sideBarTxt")
                 }
-                + "Fruits"
+                +"Fruits"
             }
         }
         styledDiv {
@@ -405,7 +416,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("sideBarTxt")
                 }
-                + "Fer"
+                +"Fer"
             }
         }
         styledDiv {
@@ -417,7 +428,7 @@ val MainView = fc<Props> {
             }
             styledDiv {
                 attrs {
-                    id ="user-greetings"
+                    id = "user-greetings"
                 }
                 a {
                     attrs {
@@ -449,7 +460,7 @@ val MainView = fc<Props> {
                     document.getElementById("subsidebar_3")?.classList?.remove("opened")
                 }
             }
-            + "X"
+            +"X"
         }
         styledDiv {
             css {
@@ -465,7 +476,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("subSideBarTxt")
                 }
-                + "Racine Magique !"
+                +"Racine Magique !"
             }
         }
     }
@@ -489,7 +500,7 @@ val MainView = fc<Props> {
                     document.getElementById("subsidebar_3")?.classList?.remove("opened")
                 }
             }
-            + "X"
+            +"X"
         }
         styledDiv {
             css {
@@ -505,7 +516,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("subSideBarTxt")
                 }
-                + "Cabane Niveau 0"
+                +"Cabane Niveau 0"
             }
         }
         styledDiv {
@@ -522,7 +533,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("subSideBarTxt")
                 }
-                + "Bûcherons Niveau 0"
+                +"Bûcherons Niveau 0"
             }
         }
         styledDiv {
@@ -539,7 +550,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("subSideBarTxt")
                 }
-                + "Forestier Niveau 0"
+                +"Forestier Niveau 0"
             }
         }
         styledDiv {
@@ -556,7 +567,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("subSideBarTxt")
                 }
-                + "Fred Grainier Niveau 0"
+                +"Fred Grainier Niveau 0"
             }
         }
     }
@@ -580,7 +591,7 @@ val MainView = fc<Props> {
                     document.getElementById("subsidebar_3")?.classList?.remove("opened")
                 }
             }
-            + "X"
+            +"X"
         }
         styledDiv {
             css {
@@ -596,7 +607,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("subSideBarTxt")
                 }
-                + "Hangar Niveau 0"
+                +"Hangar Niveau 0"
             }
         }
     }
@@ -620,7 +631,7 @@ val MainView = fc<Props> {
                     document.getElementById("subsidebar_3")?.classList?.remove("opened")
                 }
             }
-            + "X"
+            +"X"
         }
         styledDiv {
             css {
@@ -636,7 +647,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("subSideBarTxt")
                 }
-                + "Mine Niveau 0"
+                +"Mine Niveau 0"
             }
         }
 
@@ -654,7 +665,7 @@ val MainView = fc<Props> {
                 css {
                     classes.add("subSideBarTxt")
                 }
-                + "Entrepôt Niveau 0"
+                +"Entrepôt Niveau 0"
             }
         }
     }
