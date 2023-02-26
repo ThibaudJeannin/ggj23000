@@ -1,79 +1,42 @@
-document.getElementById('axe').addEventListener('click', () => {
-  fetch('/api/parcels/mine/harvest/wood')
-    .then(r => r.json())
-    .then(data => {
-      updateParcelle(data)
-    })
-})
-document.getElementById('hoe').addEventListener('click', () => {
-  fetch('/api/parcels/mine/harvest/fruits')
-    .then(r => r.json())
-    .then(data => {
-      updateParcelle(data)
-    })
-})
-document.getElementById('pickaxe').addEventListener('click', () => {
-  fetch('/api/parcels/mine/harvest/iron')
-    .then(r => r.json())
-    .then(data => {
-      updateParcelle(data)
-    })
-})
+//document.getElementById('axe').addEventListener('click', () => {
+//  fetch('/api/parcels/mine/harvest/wood')
+//    .then(r => r.json())
+//    .then(data => {
+//      updateParcelle(data)
+//    })
+//})
+//document.getElementById('hoe').addEventListener('click', () => {
+//  fetch('/api/parcels/mine/harvest/fruits')
+//    .then(r => r.json())
+//    .then(data => {
+//      updateParcelle(data)
+//    })
+//})
+//document.getElementById('pickaxe').addEventListener('click', () => {
+//  fetch('/api/parcels/mine/harvest/iron')
+//    .then(r => r.json())
+//    .then(data => {
+//      updateParcelle(data)
+//    })
+//})
 
-fetchParcelle = () => {
-  fetch('/api/parcels/mine', {redirect: 'error'})
-    .then(r => r.json())
-    .catch(e => {
-      window.location.href = '/app/login'
-    })
-    .then(data => {
-      updateParcelle(data)
-    })
-}
+//fetchParcelle = () => {
+//  fetch('/api/parcels/mine', {redirect: 'error'})
+//    .then(r => r.json())
+//    .catch(e => {
+//      window.location.href = '/app/login'
+//    })
+//    .then(data => {
+//      updateParcelle(data)
+//    })
+//}
 
-fetchMe = () => {
-  fetch('/api/users/me')
-    .then(r => {
-      if (r.status !== 200) {
-        window.location.href = '/app/login'
-      }
+//updateParcelle = (parcelle) => {
+//  console.log(parcelle)
+//  updateDisplay(parcelle)
+//}
 
-      return r.json()
-    })
-    .catch(e => {
-      window.location.href = '/app/login'
-    })
-    .then(data => {
-      fetchParcelle()
-
-      const name = data?.publicUser?.userName
-      const tag = data?.userTag
-      document.getElementById('user-greetings').innerHTML = `Bonjour ${name} (Utilise ${tag} pour te reconnecter) ` + document.getElementById('user-greetings').innerHTML // todo yohann fait mieux
-    })
-}
-
-updateParcelle = (parcelle) => {
-  console.log(parcelle)
-  displayResourcesNb(parcelle)
-
-  updateDisplay(parcelle)
-}
-
-displayResourcesNb = (parcelle) => {
-  document.querySelector('#wood > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.wood?.quantity, parcelle?.resourceStorage?.wood?.capacity)
-  document.querySelector('#fruits > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.fruits?.quantity, parcelle?.resourceStorage?.fruits?.capacity)
-  document.querySelector('#iron > .resource-text').innerText = formatResourceNb(parcelle?.resourceStorage?.iron?.quantity, parcelle?.resourceStorage?.iron?.capacity)
-}
-
-
-formatResourceNb = (quantity, capacity) => {
-  return (quantity != null && capacity != 0 && quantity != 0) ? (new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 0}).format(quantity) + " / " + new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 0}).format(capacity)) : 0
-
-}
-
-fetchMe()
-
-setInterval(fetchParcelle, 5000)
+//setInterval(fetchParcelle, 5000)
 
 
 // GAME VIEW
@@ -196,7 +159,7 @@ generateIron = (number) => {
 
 displaySprites = () => {
   for (let i = 0; i < trees.length; ++i) {
-    view.appendChild(trees[i].obj)
+//    view.appendChild(trees[i].obj)
   }
   for (let i = 0; i < fruits.length; ++i) {
     view.appendChild(fruits[i].obj)

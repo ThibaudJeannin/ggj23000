@@ -90,7 +90,7 @@ class ParcelDao(id: EntityID<Int>) : Entity<Int>(id) {
 
         if (parcel != null) {
 
-            var parcelNN = parcel!!
+            val parcelNN = parcel
 
             rsWoodQuantity = parcelNN.resourceStorage.wood.quantity;
             rsWoodCapacity = parcelNN.resourceStorage.wood.capacity;

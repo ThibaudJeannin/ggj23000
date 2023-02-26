@@ -1,15 +1,41 @@
 import browser.document
+import ggj.Parcel
+import ggj.users.User
+import ggj.users.UserMe
+import io.ktor.client.call.*
+import io.ktor.client.request.*
+import kotlinx.coroutines.launch
+import kotlinx.css.*
 import kotlinx.html.id
 import kotlinx.html.title
 import react.Props
 import react.dom.*
 import react.fc
-import styled.css
-import styled.styledDiv
-import styled.styledP
-import styled.styledSpan
+import react.useEffectOnce
+import react.useState
+import styled.*
+import web.timers.setInterval
+import kotlin.math.abs
+import kotlin.math.min
+import kotlin.random.Random
 
 val MainView = fc<Props> {
+
+    var me: UserMe by useState(UserMe(publicUser = User(0, "xxxx"), "####"))
+    var parcel: Parcel by useState(Parcel())
+
+    useEffectOnce() {
+        scope.launch {
+            me = retrieveCurrentUser()
+            parcel = retrieveParcel()
+        }
+    }
+
+//    setInterval({
+//        scope.launch {
+//            parcel = retrieveParcel()
+//        }
+//    }, 5000)
 
     div {
         attrs {
@@ -39,6 +65,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-text")
                     }
+                    +"${parcel.resourceStorage.wood.quantity.toInt()} / ${parcel.resourceStorage.wood.capacity.toInt()}"
                 }
             }
 
@@ -60,6 +87,7 @@ val MainView = fc<Props> {
                     css {
                         classes.add("resource-text")
                     }
+                    +"${parcel.resourceStorage.fruits.quantity.toInt()} / ${parcel.resourceStorage.fruits.capacity.toInt()}"
                 }
             }
 
@@ -80,6 +108,7 @@ val MainView = fc<Props> {
                 styledDiv {
                     css {
                         classes.add("resource-text")
+                        +"${parcel.resourceStorage.iron.quantity.toInt()} / ${parcel.resourceStorage.iron.capacity.toInt()}"
                     }
                 }
             }
@@ -191,6 +220,11 @@ val MainView = fc<Props> {
                         attrs {
                             id = "axe"
                             title = "Abattre un arbre"
+                            onClick = {
+                                scope.launch {
+                                    parcel = httpClient.get("/api/parcels/mine/harvest/wood").body()
+                                }
+                            }
                         }
                     }
 
@@ -200,13 +234,18 @@ val MainView = fc<Props> {
                         }
                         attrs {
                             id = "hoe"
+                            onClick = {
+                                scope.launch {
+                                    parcel = httpClient.get("/api/parcels/mine/harvest/fruits").body()
+                                }
+                            }
                         }
                         styledSpan {
                             css {
                                 classes.add("toolTipTxt")
                             }
                             p {
-                                + "Récoltes des fruits !"
+                                +"Récoltes des fruits !"
                             }
                         }
                     }
@@ -217,16 +256,40 @@ val MainView = fc<Props> {
                         }
                         attrs {
                             id = "pickaxe"
-
+                            onClick = {
+                                scope.launch {
+                                    parcel = httpClient.get("/api/parcels/mine/harvest/iron").body()
+                                }
+                            }
                         }
                         styledSpan {
                             css {
                                 classes.add("toolTipTxt")
                             }
                             p {
-                                + "Cling clang plus de cailloux"
+                                +"Cling clang plus de cailloux"
                             }
                         }
+                    }
+                }
+            }
+
+            for (i in 0..parcel.naturalResources.trees.toInt()) {
+                console.log("tree $i")
+                styledImg {
+                    val modifier = 300
+                    val parallax = 25
+
+                    css {
+                        classes.add("tree")
+                        zIndex = randomInt() % modifier
+                        height = 20.vh - (parallax - ((i / modifier) * parallax)).px
+                        left = (randomInt() % browser.window.innerWidth).px - 5.vh
+                        bottom = 35.pct - (zIndex - modifier / 2).px
+                    }
+                    attrs {
+                        id = "tree$i"
+                        src = "/assets/trees/tree${randomInt() % 8}.png"
                     }
                 }
             }
@@ -439,6 +502,7 @@ val MainView = fc<Props> {
                 attrs {
                     id = "user-greetings"
                 }
+                +"Bonjour ${me.publicUser.userName} (Utilise ${me.userTag} pour te reconnecter) "
                 a {
                     attrs {
                         href = "/sign-out"
@@ -686,3 +750,17 @@ val MainView = fc<Props> {
     }
 }
 
+private fun randomInt() = abs(Random.nextInt())
+
+suspend fun retrieveParcel(): Parcel {
+    return httpClient.get("api/parcels/mine").body()
+}
+
+suspend fun retrieveCurrentUser(): UserMe {
+    console.log("retrieve current user")
+    val getResponse = httpClient.get("${baseUrl}/api/users/me")
+    if (getResponse.status.value == 302) {
+        redirect(getResponse.headers["Location"]!!)
+    }
+    return getResponse.body()
+}
